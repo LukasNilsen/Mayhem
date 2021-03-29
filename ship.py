@@ -2,7 +2,8 @@ import pygame
 from config import ship_config
 from config import world
 
-SHIP_PNG = r"resources\ship_EXAMPLE.png"
+SHIP_OFF = r"resources\rocketship.png"
+SHIP_ON = r"resources\rocketship_thrust.png"
 
 
 class Ship(pygame.sprite.Sprite):
@@ -22,7 +23,7 @@ class Ship(pygame.sprite.Sprite):
         self.max_fuel = ship_config["max_fuel"]
 
         # Loads the ship image
-        self.image = pygame.image.load(SHIP_PNG).convert_alpha()
+        self.image = pygame.image.load(SHIP_OFF).convert_alpha()
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
     def action(self, key):
@@ -34,8 +35,10 @@ class Ship(pygame.sprite.Sprite):
             self.velocity = self.velocity.rotate(1)
         if key == "thrust":
             self.acceleration = self.direction * 0.05
+            self.image = pygame.image.load(SHIP_ON).convert_alpha()
         else:
             self.acceleration = [0, 0]
+            self.image = pygame.image.load(SHIP_OFF).convert_alpha()
         if key == "fire":
             pass
 
