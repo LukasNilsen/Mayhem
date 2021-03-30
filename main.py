@@ -50,7 +50,7 @@ def main():
             player1.reload = bullet_config["reload_time"]
 
         if keys[player2.fire_key] and player2.reload == 0:
-            f = Fire(player1.pos.x, player2.pos.y, player2.direction)
+            f = Fire(player2.pos.x, player2.pos.y, player2.direction)
             bullet_group.add(f)
             all_group.add(f)
             player2.reload = bullet_config["reload_time"]
