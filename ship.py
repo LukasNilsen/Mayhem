@@ -1,6 +1,6 @@
 import pygame
 from fire import Fire
-from config import ship_config, world
+from config import ship_config, world, SCREEN_X, SCREEN_Y
 
 SHIP_OFF = r"resources\rocketship.png"
 SHIP_ON = r"resources\rocketship_thrust.png"
@@ -27,8 +27,10 @@ class Ship(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
         self.reload = 0
+        self.score = 0
 
     def action(self, keys):
+
         if "left" in keys:
             self.direction = self.direction.rotate(-1)
             self.angle += 1
@@ -45,8 +47,20 @@ class Ship(pygame.sprite.Sprite):
             self.acceleration = [0, 0]
             self.engine_on = False
 
+    def edges(self):
+
+        if self.pos.x > SCREEN_X:
+            self.pos.x = 0
+        if self.pos.x < 0:
+            self.pos.x = SCREEN_X
+        if self.pos.y > SCREEN_Y:
+            self.pos.y = 0
+        if self.pos.y < 0:
+            self.pos.y = SCREEN_Y
 
     def update(self):
+
+        #self.edges()
 
         # Calculating the forces acting on the ship, and adding them to the velocity of it
         forces = self.acceleration + self.gravity
@@ -64,9 +78,7 @@ class Ship(pygame.sprite.Sprite):
         if self.reload > 0:
             self.reload -= 1
 
-
-
-        # Loads different engine
+        # Different engine states
         if self.engine_on == True:
             rotated_image = pygame.transform.rotate(ship_on, self.angle)
             self.image = rotated_image

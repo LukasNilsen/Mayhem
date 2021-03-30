@@ -1,7 +1,8 @@
 import pygame
 from player import Player
-from config import SCREEN_X, SCREEN_Y, bullet_config
 from fire import Fire
+from splitscreen import Splitscreen
+from config import SCREEN_X, SCREEN_Y, bullet_config
 
 pygame.init()
 pygame.display.set_caption("Mayhem")
@@ -17,11 +18,12 @@ player1 = Player("a", "d", "w", "space")
 player2 = Player("left", "right", "up", "m")
 player_group.add(player1, player2)
 
-all_group.add(player1)
+all_group.add(player1, player2)
 
 hz = 144
 clock = pygame.time.Clock()
 
+splitscreen = Splitscreen(player1, player2, screen)
 
 def main():
     while True:
@@ -45,17 +47,19 @@ def main():
             f = Fire(player1.pos.x, player1.pos.y, player1.direction)
             bullet_group.add(f)
             all_group.add(f)
-            player1.reload = 20
+            player1.reload = bullet_config["reload_time"]
 
         if keys[player2.fire_key] and player2.reload == 0:
-            f = Fire(player1.pos.x, player1.pos.y, player1.direction)
+            f = Fire(player1.pos.x, player2.pos.y, player2.direction)
             bullet_group.add(f)
             all_group.add(f)
             player2.reload = bullet_config["reload_time"]
 
+        # COMMENT OUT TO REMOVE SPLITSCREEN
+        # splitscreen.update()
 
         all_group.update()
-        all_group.draw(screen)
+        all_group.draw(screen) # UNCOMMENT IF SPLITSCREEN ISN'T USED
         pygame.display.update()
 
 
