@@ -4,8 +4,8 @@ import pygame
 
 # Maybe we shouldn't use dictionaries and instead just use variables? or a mix? We'll see.
 
-SCREEN_X = 1280
-SCREEN_Y = 720
+SCREEN_X = 1600
+SCREEN_Y = 900
 
 world = {
     "gravity": 0.02,
@@ -15,6 +15,11 @@ world = {
 ship_config = {
     "max_fuel": 100,
     "engine_strength": 1.02
+}
+
+bullet_config = {
+    "speed": 5,
+    "reload_time": 20
 }
 
 keyboard = {

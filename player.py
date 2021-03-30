@@ -1,6 +1,6 @@
 import pygame
 from ship import Ship
-from config import *
+from config import keyboard
 
 
 class Player(Ship):
@@ -15,17 +15,18 @@ class Player(Ship):
         self.fuel = self.max_fuel
 
     def input(self, keys):
-        if keys[self.left_key]:
-            self.action("left")
-        if keys[self.right_key]:
-            self.action("right")
-        if keys[self.thrust_key]:
-            self.action("thrust")
 
-        else:
-            self.action(None)
+        strokes = []
+        if keys[self.left_key]:
+            strokes.append("left")
+        if keys[self.right_key]:
+            strokes.append("right")
+        if keys[self.thrust_key]:
+            strokes.append("thrust")
         if keys[self.fire_key]:
-            self.action("fire")
+            strokes.append("fire")
+
+        self.action(strokes)
 
 
 

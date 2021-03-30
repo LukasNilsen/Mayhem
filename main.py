@@ -1,6 +1,7 @@
 import pygame
 from player import Player
-from config import *  # change this
+from config import SCREEN_X, SCREEN_Y, bullet_config
+from fire import Fire
 
 pygame.init()
 pygame.display.set_caption("Mayhem")
@@ -8,10 +9,15 @@ pygame.display.set_caption("Mayhem")
 screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
 
 # TEST CODE:
+player_group = pygame.sprite.Group()
 all_group = pygame.sprite.Group()
-a = Player("a", "d", "w", "space")
-b = Player("left", "right", "up", "m")
-all_group.add(a, b)
+bullet_group = pygame.sprite.Group()
+
+player1 = Player("a", "d", "w", "space")
+player2 = Player("left", "right", "up", "m")
+player_group.add(player1, player2)
+
+all_group.add(player1)
 
 hz = 144
 clock = pygame.time.Clock()
@@ -32,8 +38,21 @@ def main():
         # Log key inputs
         keys = pygame.key.get_pressed()
 
-        for i in all_group:
+        for i in player_group:
             i.input(keys)
+
+        if keys[player1.fire_key] and player1.reload == 0:
+            f = Fire(player1.pos.x, player1.pos.y, player1.direction)
+            bullet_group.add(f)
+            all_group.add(f)
+            player1.reload = 20
+
+        if keys[player2.fire_key] and player2.reload == 0:
+            f = Fire(player1.pos.x, player1.pos.y, player1.direction)
+            bullet_group.add(f)
+            all_group.add(f)
+            player2.reload = bullet_config["reload_time"]
+
 
         all_group.update()
         all_group.draw(screen)
