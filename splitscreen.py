@@ -37,7 +37,7 @@ class Splitscreen():
         if - SCREEN_X / 4 < self.player1.pos.x - self.player2.pos.x < SCREEN_Y/4 and - SCREEN_Y/2 < self.player1.pos.y - self.player2.pos.y < SCREEN_Y / 2:
             player2 = pygame.transform.rotate(ship_off, self.player2.angle)
             rect = player2.get_rect()
-            self.screen.blit(player2, (SCREEN_X // 4 + (self.player2.pos.x - self.player1.pos.x) - rect.width/2, SCREEN_Y / 2 - rect.height/2 + (self.player2.pos.y - self.player1.pos.x)))
+            self.screen.blit(player2, (SCREEN_X // 4 + (self.player2.pos.x - self.player1.pos.x), SCREEN_Y / 2 + (self.player2.pos.y - self.player1.pos.x)))
 
 
 

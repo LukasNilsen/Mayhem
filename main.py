@@ -3,6 +3,7 @@ from player import Player
 from fire import Fire
 from splitscreen import Splitscreen
 from config import SCREEN_X, SCREEN_Y, bullet_config
+from gui import GUI
 
 pygame.init()
 pygame.display.set_caption("Mayhem")
@@ -14,16 +15,20 @@ player_group = pygame.sprite.Group()
 all_group = pygame.sprite.Group()
 bullet_group = pygame.sprite.Group()
 
-player1 = Player("a", "d", "w", "space")
-player2 = Player("left", "right", "up", "m")
+player1 = Player("a", "d", "w", "space", 1)
+player2 = Player("left", "right", "up", "m", 2)
+gui = GUI(player1, player2, screen)
+
 player_group.add(player1, player2)
 
 all_group.add(player1, player2)
 
+player1.pos = pygame.Vector2([200, 300])
+player2.pos = pygame.Vector2([SCREEN_X-200, 300])
+
 hz = 144
 clock = pygame.time.Clock()
 
-splitscreen = Splitscreen(player1, player2, screen)
 
 def main():
     while True:
@@ -43,23 +48,29 @@ def main():
         for i in player_group:
             i.input(keys)
 
-        if keys[player1.fire_key] and player1.reload == 0:
+        if keys[player1.fire_key] and player1.reload == 0 and player1.bullets > 0:
             f = Fire(player1.pos.x, player1.pos.y, player1.direction)
             bullet_group.add(f)
             all_group.add(f)
             player1.reload = bullet_config["reload_time"]
+            player1.bullets -= 1
 
-        if keys[player2.fire_key] and player2.reload == 0:
+        if keys[player2.fire_key] and player2.reload == 0 and player2.bullets > 0:
             f = Fire(player2.pos.x, player2.pos.y, player2.direction)
             bullet_group.add(f)
             all_group.add(f)
             player2.reload = bullet_config["reload_time"]
+            player2.bullets -= 1
 
-        # COMMENT OUT TO REMOVE SPLITSCREEN
-        # splitscreen.update()
+        player1.hit(bullet_group)
+        player2.hit(bullet_group)
 
+        if keys[pygame.K_ESCAPE]:
+            exit()
+
+        gui.update()
         all_group.update()
-        all_group.draw(screen) # UNCOMMENT IF SPLITSCREEN ISN'T USED
+        all_group.draw(screen)
         pygame.display.update()
 
 

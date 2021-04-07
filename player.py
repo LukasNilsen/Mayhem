@@ -4,7 +4,7 @@ from config import keyboard
 
 
 class Player(Ship):
-    def __init__(self, left, right, thrust, fire):
+    def __init__(self, left, right, thrust, fire, player):
         super().__init__()
 
         self.left_key = keyboard[left]
@@ -12,7 +12,7 @@ class Player(Ship):
         self.thrust_key = keyboard[thrust]
         self.fire_key = keyboard[fire]
 
-        self.fuel = self.max_fuel
+        self.player = player
 
     def input(self, keys):
 

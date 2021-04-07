@@ -1,9 +1,9 @@
 import pygame
-from fire import Fire
-from config import ship_config, world, SCREEN_X, SCREEN_Y
+from config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y
 
 SHIP_OFF = r"resources\rocketship.png"
 SHIP_ON = r"resources\rocketship_thrust.png"
+EXPLOSION = r"resources\explosion.png"
 
 
 class Ship(pygame.sprite.Sprite):
@@ -21,13 +21,19 @@ class Ship(pygame.sprite.Sprite):
         self.engine_on = 0
 
         self.max_fuel = ship_config["max_fuel"]
+        self.max_bullets = ship_config["max_bullets"]
 
         # Loads the ship image
         self.image = pygame.image.load(SHIP_OFF).convert_alpha()
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        self.image_mask = pygame.mask.from_surface(self.image)
 
         self.reload = 0
         self.score = 0
+        self.fuel = self.max_fuel
+        self.bullets = self.max_bullets
+
+        self.alive = True
 
     def action(self, keys):
 
@@ -39,9 +45,10 @@ class Ship(pygame.sprite.Sprite):
             self.direction = self.direction.rotate(1)
             self.angle -= 1
 
-        if "thrust" in keys:
+        if "thrust" in keys and self.fuel > 0:
             self.acceleration = self.direction * 0.05
             self.engine_on = True
+            self.fuel -= 1
 
         else:
             self.acceleration = [0, 0]
@@ -58,32 +65,47 @@ class Ship(pygame.sprite.Sprite):
         if self.pos.y < 0:
             self.pos.y = SCREEN_Y
 
+    def hit(self, bullets):
+
+        for i in bullets:
+            if i.since_birth > bullet_config["priming_time"]:      # Bullet "priming time"
+                offset = (int(i.rect.left - self.rect.left), int(i.rect.top - self.rect.top))
+                collision = self.image_mask.overlap(i.image_mask, offset)
+
+                if collision:
+                    self.alive = False
+
     def update(self):
 
-        #self.edges()
+        if self.alive:
+            self.edges()
 
-        # Calculating the forces acting on the ship, and adding them to the velocity of it
-        forces = self.acceleration + self.gravity
-        self.velocity += forces
-        self.velocity *= (1 - world["drag"])
+            # Calculating the forces acting on the ship, and adding them to the velocity of it
+            forces = self.acceleration + self.gravity
+            self.velocity += forces
+            self.velocity *= (1 - world["drag"])
 
-        # Updating position of the ship
-        self.pos = self.pos + self.velocity
+            # Updating position of the ship
+            self.pos = self.pos + self.velocity
 
-        # Loading image for engine_on and engine_off
-        ship_on = pygame.image.load(SHIP_ON)
-        ship_off = pygame.image.load(SHIP_OFF)
+            # Loading image for engine_on and engine_off
+            ship_on = pygame.image.load(SHIP_ON)
+            ship_off = pygame.image.load(SHIP_OFF)
 
-        # "Reloads" the gun
-        if self.reload > 0:
-            self.reload -= 1
+            # "Reloads" the gun
+            if self.reload > 0:
+                self.reload -= 1
 
-        # Different engine states
-        if self.engine_on == True:
-            rotated_image = pygame.transform.rotate(ship_on, self.angle)
-            self.image = rotated_image
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+            # Different engine states
+            if self.engine_on == True:
+                rotated_image = pygame.transform.rotate(ship_on, self.angle)
+                self.image = rotated_image
+                self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+            else:
+                rotated_image = pygame.transform.rotate(ship_off, self.angle)
+                self.image = rotated_image
+                self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+
         else:
-            rotated_image = pygame.transform.rotate(ship_off, self.angle)
-            self.image = rotated_image
+            self.image = pygame.image.load(EXPLOSION)
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
