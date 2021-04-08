@@ -12,7 +12,7 @@ class Player(Ship):
         self.thrust_key = keyboard[thrust]
         self.fire_key = keyboard[fire]
 
-        self.fuel = self.max_fuel
+        self.player = player
 
     def input(self, keys):
 

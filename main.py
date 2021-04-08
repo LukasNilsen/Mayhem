@@ -6,7 +6,7 @@ from player import Player
 from splitscreen import Splitscreen
 from ThrustAnimation import ThrustAnimation
 from terrain import Terrain
-
+from gui import GUI
 
 
 # I've moved everything that was outside the loop, inside the __init__ might have to add self.[variableName] to most of this stuff
@@ -25,9 +25,11 @@ class Game():
         self.all_group = pygame.sprite.Group()
         self.terrain_group = pygame.sprite.Group()
 
+
         self.player1 = Player("a", "d", "w" , "space", 1)
         self.player2 = Player("left", "right", "up", "m", 2)
         self.player_group.add(self.player1, self.player2)
+        self.gui = GUI(player1, player2, screen)
 
         self.all_group.add(self.player1, self.player2)
 
@@ -35,13 +37,16 @@ class Game():
         self.clock = pygame.time.Clock()
 
         splitscreen = Splitscreen(self.player1, self.player2, self.screen)
+        
+        player1.pos = pygame.Vector2([200, 300])
+        player2.pos = pygame.Vector2([SCREEN_X-200, 300])
 
         self.generateTerrain()
 
     def main(self):
-
+        
         while True:
-
+    
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
