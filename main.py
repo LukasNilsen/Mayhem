@@ -81,8 +81,7 @@ class Game:
                 self.player2.flameReload = flameConfig["delay"]
 
             for player in self.player_group:
-                player.hit(self.bullet_group)
-                player.collision(self.terrain)
+                player.collision(self.bullet_group, self.terrain)
 
             self.all_group.update()
             self.all_group.draw(self.screen)

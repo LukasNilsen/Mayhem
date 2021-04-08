@@ -79,22 +79,31 @@ class Ship(pygame.sprite.Sprite):
         if self.pos.y < 0:
             self.pos.y = SCREEN_Y
 
-    def hit(self, bullets):
 
+    def collision(self, bullets, terrain):
+
+        # If ship gets hits by bullet or bullet hits terrain
         for i in bullets:
+
+            bullet_terrain_offset = (int(i.rect.left - terrain.rect.left), int(i.rect.top - terrain.rect.top))
+            bullet_terrain_collision = terrain.image_mask.overlap(i.image_mask, bullet_terrain_offset)
+
+            if bullet_terrain_collision:
+                i.kill()
+
             if i.since_birth > bullet_config["priming_time"]:  # Bullet "priming time"
-                offset = (int(i.rect.left - self.rect.left), int(i.rect.top - self.rect.top))
-                collision = self.image_mask.overlap(i.image_mask, offset)
+                bullet_ship_offset = (int(i.rect.left - self.rect.left), int(i.rect.top - self.rect.top))
+                collision = self.image_mask.overlap(i.image_mask, bullet_ship_offset)
 
                 if collision:
                     self.alive = False
+                    i.kill()
 
-    def collision(self, terrain):
+        # If ship crashes into terrain
+        ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
+        ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
 
-        offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
-        collision = self.image_mask.overlap(terrain.image_mask, offset)
-
-        if collision and self.alive_ctr > 20:
+        if ship_terrain_collision and self.alive_ctr > 20:
             self.alive = 0
 
     def update(self):
