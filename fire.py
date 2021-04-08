@@ -3,7 +3,6 @@ from config import bullet_config
 
 BULLET = r"resources\bullet.png"
 
-
 class Fire(pygame.sprite.Sprite):
     def __init__(self, x, y, direction):
         super().__init__()

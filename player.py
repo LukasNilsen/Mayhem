@@ -4,15 +4,15 @@ from config import keyboard
 
 
 class Player(Ship):
-    def __init__(self, left, right, thrust, fire, playerNr):
-        super().__init__(playerNr)
+    def __init__(self, left, right, thrust, fire, player_number):
+        super().__init__(player_number)
 
         self.left_key = keyboard[left]
         self.right_key = keyboard[right]
         self.thrust_key = keyboard[thrust]
         self.fire_key = keyboard[fire]
 
-        # self.player = player
+        self.player = player_number
 
     def input(self, keys):
 
