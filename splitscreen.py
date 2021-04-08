@@ -6,8 +6,8 @@ from config import SCREEN_X, SCREEN_Y
 
 TESTMAP = r"resources\SPLITSCREEN_TEST.png"
 
-SHIP_OFF = r"resources\rocketship.png"
-SHIP_ON = r"resources\rocketship_thrust.png"
+SHIP_OFF = r"resources\Player1.png"
+SHIP_ON = r"resources\Player1Moving.png"
 
 ship_on = pygame.image.load(SHIP_ON)
 ship_off = pygame.image.load(SHIP_OFF)

@@ -2,12 +2,13 @@ import pygame
 from fire import Fire
 from config import ship_config, world, SCREEN_X, SCREEN_Y
 
-SHIP_OFF = r"resources\rocketship.png"
-SHIP_ON = r"resources\rocketship_thrust.png"
-
+SHIP1_OFF = r"resources\Player1.png"
+SHIP2_OFF = r"resources\Player2.png"
+SHIP1_ON = r"resources\Player1Moving.png"
+SHIP2_ON = r"resources\Player2Moving.png"
 
 class Ship(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, playerNr):
         super().__init__()
 
         self.pos = pygame.Vector2([500, 200])
@@ -20,13 +21,21 @@ class Ship(pygame.sprite.Sprite):
         self.angle = 0
         self.engine_on = 0
 
+        self.playerNr = playerNr
+
         self.max_fuel = ship_config["max_fuel"]
 
         # Loads the ship image
-        self.image = pygame.image.load(SHIP_OFF).convert_alpha()
-        self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        if self.playerNr == 1:
+            self.image = pygame.image.load(SHIP1_OFF).convert_alpha()
+            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        
+        if self.playerNr == 2:
+            self.image = pygame.image.load(SHIP2_OFF).convert_alpha()
+            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
         self.reload = 0
+        self.flameReload = 0
         self.score = 0
 
     def action(self, keys):
@@ -47,6 +56,7 @@ class Ship(pygame.sprite.Sprite):
             self.acceleration = [0, 0]
             self.engine_on = False
 
+
     def edges(self):
 
         if self.pos.x > SCREEN_X:
@@ -62,8 +72,9 @@ class Ship(pygame.sprite.Sprite):
 
         #self.edges()
 
-        # Calculating the forces acting on the ship, and adding them to the velocity of it
-        forces = self.acceleration + self.gravity
+        # Calculating the forces acting on the ship, and adding them to the velocity of it.
+        # I've removed gravity as of now for testing purposes.
+        forces = self.acceleration
         self.velocity += forces
         self.velocity *= (1 - world["drag"])
 
@@ -71,12 +82,19 @@ class Ship(pygame.sprite.Sprite):
         self.pos = self.pos + self.velocity
 
         # Loading image for engine_on and engine_off
-        ship_on = pygame.image.load(SHIP_ON)
-        ship_off = pygame.image.load(SHIP_OFF)
+        if self.playerNr == 1:
+            ship_on = pygame.image.load(SHIP1_ON)
+            ship_off = pygame.image.load(SHIP1_OFF)
+        if self.playerNr == 2:
+            ship_on = pygame.image.load(SHIP2_ON)
+            ship_off = pygame.image.load(SHIP2_OFF)
 
         # "Reloads" the gun
         if self.reload > 0:
             self.reload -= 1
+        
+        if self.flameReload > 0:
+            self.flameReload -= 1
 
         # Different engine states
         if self.engine_on == True:
