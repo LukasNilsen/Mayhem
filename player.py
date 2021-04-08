@@ -12,7 +12,7 @@ class Player(Ship):
         self.thrust_key = keyboard[thrust]
         self.fire_key = keyboard[fire]
 
-        self.player = player
+        # self.player = player
 
     def input(self, keys):
 

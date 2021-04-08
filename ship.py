@@ -107,10 +107,6 @@ class Ship(pygame.sprite.Sprite):
         self.pos = self.pos + self.velocity
 
         # Loading image for engine_on and engine_off
-        ship_on = pygame.image.load(SHIP_ON)
-        ship_off = pygame.image.load(SHIP_OFF)
-
-        # Loading image for engine_on and engine_off
         if self.playerNr == 1:
             ship_on = pygame.image.load(SHIP1_ON)
             ship_off = pygame.image.load(SHIP1_OFF)
@@ -130,11 +126,11 @@ class Ship(pygame.sprite.Sprite):
             rotated_image = pygame.transform.rotate(ship_on, self.angle)
             self.image = rotated_image
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
-        elif:
+        else:
             rotated_image = pygame.transform.rotate(ship_off, self.angle)
             self.image = rotated_image
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
-        else:
-            self.image = pygame.image.load(EXPLOSION)
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        # else:
+        #     self.image = pygame.image.load(EXPLOSION)
+        #     self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))

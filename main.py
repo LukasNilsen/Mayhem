@@ -29,7 +29,7 @@ class Game():
         self.player1 = Player("a", "d", "w" , "space", 1)
         self.player2 = Player("left", "right", "up", "m", 2)
         self.player_group.add(self.player1, self.player2)
-        self.gui = GUI(player1, player2, screen)
+        self.gui = GUI(self.player1, self.player2, self.screen)
 
         self.all_group.add(self.player1, self.player2)
 
@@ -38,8 +38,8 @@ class Game():
 
         splitscreen = Splitscreen(self.player1, self.player2, self.screen)
         
-        player1.pos = pygame.Vector2([200, 300])
-        player2.pos = pygame.Vector2([SCREEN_X-200, 300])
+        self.player1.pos = pygame.Vector2([200, 300])
+        self.player2.pos = pygame.Vector2([SCREEN_X-200, 300])
 
         self.generateTerrain()
 

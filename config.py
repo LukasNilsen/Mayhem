@@ -42,3 +42,13 @@ flameConfig = {
     "delay": 2,
     "animationTime": 700
 }
+
+brickConfig = {
+    "Blue": (0, 0, 255),
+    "Red": (255, 0, 0),
+    "Green": (0, 255, 0)
+}
+
+brickPos = {
+    1 = []
+}
