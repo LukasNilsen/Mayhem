@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="96120613-4b2d-4289-88ab-c6d4b49aa947" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ThrustAnimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/ThrustAnimation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fire.py" beforeDir="false" afterPath="$PROJECT_DIR$/fire.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/SPLITSCREEN_TEST.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/rocketship.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/rocketship_thrust.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ship.py" beforeDir="false" afterPath="$PROJECT_DIR$/ship.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/terrain.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qrEOoRRY01dLd27hknhyPGyyKh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Mayhem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="96120613-4b2d-4289-88ab-c6d4b49aa947" name="Default Changelist" comment="" />
+      <created>1617829280048</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617829280048</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="381" y="195" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617830282530">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state x="381" y="195" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1854.1080@0.0.1854.1080" timestamp="1617830282530" />
+    <state x="707" y="307" key="FileChooserDialogImpl" timestamp="1617830278416">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state x="707" y="307" key="FileChooserDialogImpl/0.0.1854.1080@0.0.1854.1080" timestamp="1617830278416" />
+    <state width="1833" height="295" key="GridCell.Tab.0.bottom" timestamp="1617911780115">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="295" key="GridCell.Tab.0.bottom/0.0.1854.1080@0.0.1854.1080" timestamp="1617911780115" />
+    <state width="1833" height="295" key="GridCell.Tab.0.center" timestamp="1617911780115">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="295" key="GridCell.Tab.0.center/0.0.1854.1080@0.0.1854.1080" timestamp="1617911780115" />
+    <state width="1833" height="295" key="GridCell.Tab.0.left" timestamp="1617911780115">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="295" key="GridCell.Tab.0.left/0.0.1854.1080@0.0.1854.1080" timestamp="1617911780115" />
+    <state width="1833" height="295" key="GridCell.Tab.0.right" timestamp="1617911780115">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="295" key="GridCell.Tab.0.right/0.0.1854.1080@0.0.1854.1080" timestamp="1617911780115" />
+    <state width="1833" height="364" key="GridCell.Tab.1.bottom" timestamp="1617907880394">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="364" key="GridCell.Tab.1.bottom/0.0.1854.1080@0.0.1854.1080" timestamp="1617907880394" />
+    <state width="1833" height="364" key="GridCell.Tab.1.center" timestamp="1617907880394">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="364" key="GridCell.Tab.1.center/0.0.1854.1080@0.0.1854.1080" timestamp="1617907880394" />
+    <state width="1833" height="364" key="GridCell.Tab.1.left" timestamp="1617907880393">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="364" key="GridCell.Tab.1.left/0.0.1854.1080@0.0.1854.1080" timestamp="1617907880393" />
+    <state width="1833" height="364" key="GridCell.Tab.1.right" timestamp="1617907880394">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state width="1833" height="364" key="GridCell.Tab.1.right/0.0.1854.1080@0.0.1854.1080" timestamp="1617907880394" />
+    <state x="744" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617907886093">
+      <screen x="0" y="0" width="1854" height="1080" />
+    </state>
+    <state x="744" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1854.1080@0.0.1854.1080" timestamp="1617907886093" />
+  </component>
+</project>

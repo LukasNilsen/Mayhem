@@ -10,7 +10,7 @@ EXPLOSION = r"resources\explosion.png"
 
 
 class Ship(pygame.sprite.Sprite):
-    def __init__(self, playerNr):
+    def __init__(self, player_number):
         super().__init__()
 
         self.pos = pygame.Vector2([500, 200])
@@ -23,21 +23,22 @@ class Ship(pygame.sprite.Sprite):
         self.angle = 0
         self.engine_on = 0
 
-        self.playerNr = playerNr
+        self.player_number = player_number
 
         self.max_fuel = ship_config["max_fuel"]
         self.max_bullets = ship_config["max_bullets"]
 
-        # Loads the ship image
-        if self.playerNr == 1:
-            self.image = pygame.image.load(SHIP1_OFF).convert_alpha()
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
-            self.image_mask = pygame.mask.from_surface(self.image)
-        
-        if self.playerNr == 2:
-            self.image = pygame.image.load(SHIP2_OFF).convert_alpha()
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
-            self.image_mask = pygame.mask.from_surface(self.image)
+        # Loading image for engine_on and engine_off
+        if self.player_number == 1:
+            self.ship_on = pygame.image.load(SHIP1_ON)
+            self.ship_off = pygame.image.load(SHIP1_OFF)
+        if self.player_number == 2:
+            self.ship_on = pygame.image.load(SHIP2_ON)
+            self.ship_off = pygame.image.load(SHIP2_OFF)
+
+        self.image = self.ship_off
+        self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        self.image_mask = pygame.mask.from_surface(self.image)
 
         self.reload = 0
         self.flameReload = 0
@@ -46,6 +47,7 @@ class Ship(pygame.sprite.Sprite):
         self.bullets = self.max_bullets
 
         self.alive = True
+        self.alive_ctr = 0
 
     def action(self, keys):
 
@@ -66,7 +68,6 @@ class Ship(pygame.sprite.Sprite):
             self.acceleration = [0, 0]
             self.engine_on = False
 
-
     def edges(self):
 
         if self.pos.x > SCREEN_X:
@@ -81,60 +82,59 @@ class Ship(pygame.sprite.Sprite):
     def hit(self, bullets):
 
         for i in bullets:
-            if i.since_birth > bullet_config["priming_time"]:      # Bullet "priming time"
+            if i.since_birth > bullet_config["priming_time"]:  # Bullet "priming time"
                 offset = (int(i.rect.left - self.rect.left), int(i.rect.top - self.rect.top))
                 collision = self.image_mask.overlap(i.image_mask, offset)
 
                 if collision:
                     self.alive = False
 
+    def collision(self, terrain):
+
+        offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
+        collision = self.image_mask.overlap(terrain.image_mask, offset)
+
+        if collision and self.alive_ctr > 20:
+            self.alive = 0
+
     def update(self):
 
         if self.alive:
             self.edges()
+
+            self.alive_ctr += 1
 
             # Calculating the forces acting on the ship, and adding them to the velocity of it
             forces = self.acceleration + self.gravity
             self.velocity += forces
             self.velocity *= (1 - world["drag"])
 
-        # Calculating the forces acting on the ship, and adding them to the velocity of it.
-        # I've removed gravity as of now for testing purposes.
-        forces = self.acceleration
-        self.velocity += forces
-        self.velocity *= (1 - world["drag"])
-        # Updating position of the ship
-        self.pos = self.pos + self.velocity
+            # Calculating the forces acting on the ship, and adding them to the velocity of it.
+            # I've removed gravity as of now for testing purposes.
+            forces = self.acceleration
+            self.velocity += forces
+            self.velocity *= (1 - world["drag"])
+            # Updating position of the ship
+            self.pos = self.pos + self.velocity
 
-        # Loading image for engine_on and engine_off
-        ship_on = pygame.image.load(SHIP_ON)
-        ship_off = pygame.image.load(SHIP_OFF)
+            # "Reloads" the gun
+            if self.reload > 0:
+                self.reload -= 1
 
-        # Loading image for engine_on and engine_off
-        if self.playerNr == 1:
-            ship_on = pygame.image.load(SHIP1_ON)
-            ship_off = pygame.image.load(SHIP1_OFF)
-        if self.playerNr == 2:
-            ship_on = pygame.image.load(SHIP2_ON)
-            ship_off = pygame.image.load(SHIP2_OFF)
+            if self.flameReload > 0:
+                self.flameReload -= 1
 
-        # "Reloads" the gun
-        if self.reload > 0:
-            self.reload -= 1
-        
-        if self.flameReload > 0:
-            self.flameReload -= 1
+            # Different engine states
+            if self.engine_on:
+                rotated_image = pygame.transform.rotate(self.ship_on, self.angle)
+                self.image = rotated_image
+                self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
-        # Different engine states
-        if self.engine_on == True:
-            rotated_image = pygame.transform.rotate(ship_on, self.angle)
-            self.image = rotated_image
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
-        elif:
-            rotated_image = pygame.transform.rotate(ship_off, self.angle)
-            self.image = rotated_image
-            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+            else:
+                rotated_image = pygame.transform.rotate(self.ship_off, self.angle)
+                self.image = rotated_image
+                self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
-        else:
+        if not self.alive:
             self.image = pygame.image.load(EXPLOSION)
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))

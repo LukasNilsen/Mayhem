@@ -58,6 +58,8 @@ class ThrustAnimation(pygame.sprite.Sprite):
         elif self.timer > 35 and self.timer < 38:
             self.image = pygame.transform.rotate(self.Frame7, self.angle).convert_alpha()
 
+        self.playerPos -= self.playerDirection * 2
+        self.rect = self.rect =self.image.get_rect(center=(round(self.playerPos.x-self.playerDirection.x*32), round(self.playerPos.y-self.playerDirection.y*32)))
 
         if self.timer > 38:
             self.kill()

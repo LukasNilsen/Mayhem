@@ -1,10 +1,20 @@
 import pygame
 
+from config import SCREEN_X, SCREEN_Y
+
+EXAMPLE_MAP_1 = r"resources\example_map.png"
+TEST = r"resources\test_test.png"
+
+
 class Terrain(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-    
-    def wall(self):
-        pass
-        
+
+        self.pos = pygame.Vector2([0, 0])
+
+        self.image = pygame.image.load(EXAMPLE_MAP_1).convert_alpha()
+        self.rect = self.image.get_rect(topleft=(self.pos.x, self.pos.y))
+        self.image_mask = pygame.mask.from_surface(self.image)
+
+
