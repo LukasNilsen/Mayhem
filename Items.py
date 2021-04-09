@@ -2,6 +2,7 @@ import pygame
 from config import itemConfig
 
 Fuel = r"resources\Fuel.png"
+AmmoBox = r"resources\AmmoBox.png"
 
 # Author Adrian L Moen
 class Item(pygame.sprite.Sprite):
@@ -21,8 +22,15 @@ class Item(pygame.sprite.Sprite):
     # Author Adrian L Moen
     def itemTypeCheck(self):
         if self.type == 1:
-            print("fuel spawned", self.x, self.y, self.width, self.height)
             self.image = pygame.image.load(Fuel).convert_alpha()
+            self.rect = self.image.get_rect(topleft=(self.x, self.y))
+            self.image_mask = pygame.mask.from_surface(self.image)
+
+        if self.type == 2:
+            pass
+
+        if self.type == 3:
+            self.image = pygame.image.load(AmmoBox).convert_alpha()
             self.rect = self.image.get_rect(topleft=(self.x, self.y))
             self.image_mask = pygame.mask.from_surface(self.image)
 
@@ -31,19 +39,26 @@ class Item(pygame.sprite.Sprite):
         self.recepient.fuel = self.recepient.max_fuel
 
     # Author Adrian L Moen
-    def Bomb(self):
+    def bomb(self):
         pass
 
     # Author Adrian L Moen
     def ammo(self):
-        pass
+        self.recepient.bullets += 20 
     
     # Author Adrian L Moen
     def update(self):
+
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
+
         if self.activated:
             if self.type == 1:
                 self.fuel()
+            if self.type == 2:
+                self.bomb()
+            if self.type == 3:
+                self.ammo()
+
             self.kill()
 
         

@@ -1,6 +1,6 @@
 import pygame
 
-from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList
+from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList, itemPos
 from fire import Fire
 from player import Player
 from ThrustAnimation import ThrustAnimation
@@ -42,7 +42,7 @@ class Game:
 
 
 
-
+    # Author Lukas Nilsen & Adrian L Moen
     def main(self):
         
         while True:
@@ -99,14 +99,22 @@ class Game:
             self.all_group.draw(self.screen)
             self.gui.update()
             pygame.display.update()
-
+    
     def generateTerrain(self):
         self.terrain = Terrain()
     
+    # Author Adrian L Moen
     def generateItems(self):
-        fuel = Item(200, 200, itemList["fuel"])
-        self.item_group.add(fuel)
-        self.all_group.add(fuel)
+        
+        for i in itemPos:
+
+            fuel = Item (itemPos[i][0], itemPos[i][1], itemPos[i][2])
+
+            self.item_group.add(fuel)
+
+            self.all_group.add(fuel)
+
+
 
 if __name__ == "__main__":
     game = Game()
