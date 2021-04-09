@@ -58,7 +58,7 @@ class Game:
                 i.input(keys)
 
             # Changed so that instead of sending in just direction and x/y, we send in the whole player object, thought it was needed then apparently not, either way, if this causes issues, we can just revert it. 
-            # Either way, we now have max bullets, will start on creating items probably
+            # The changes in Fire.py relate to this. Either way, we now have max bullets, will start on creating items probably.
             if keys[self.player1.fire_key] and self.player1.reload == 0:
                 if self.player1.bullets > 0:
                     f = Fire(self.player1)
@@ -89,6 +89,7 @@ class Game:
             for player in self.player_group:
                 player.collision(self.bullet_group, self.terrain)
 
+            # Added a self.Gui.update() method call, since it is not part of any group update
             self.all_group.update()
             self.all_group.draw(self.screen)
             self.gui.update()
