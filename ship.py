@@ -27,6 +27,7 @@ class Ship(pygame.sprite.Sprite):
 
         self.max_fuel = ship_config["max_fuel"]
         self.max_bullets = ship_config["max_bullets"]
+        self.max_health = ship_config["max_health"]
 
         # Loading image for engine_on and engine_off
         if self.player_number == 1:
@@ -45,6 +46,7 @@ class Ship(pygame.sprite.Sprite):
         self.score = 0
         self.fuel = self.max_fuel
         self.bullets = self.max_bullets
+        self.health = self.max_health
 
         self.alive = True
         self.alive_ctr = 0
@@ -96,7 +98,7 @@ class Ship(pygame.sprite.Sprite):
                 collision = self.image_mask.overlap(i.image_mask, bullet_ship_offset)
 
                 if collision:
-                    self.alive = False
+                    self.health -= 2
                     i.kill()
 
         # If ship crashes into terrain
@@ -104,6 +106,9 @@ class Ship(pygame.sprite.Sprite):
         ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
 
         if ship_terrain_collision and self.alive_ctr > 20:
+            self.health -= 1
+
+        if self.health == 0:
             self.alive = 0
 
     def update(self):

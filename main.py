@@ -57,17 +57,23 @@ class Game:
             for i in self.player_group:
                 i.input(keys)
 
+            # Changed so that instead of sending in just direction and x/y, we send in the whole player object, thought it was needed then apparently not, either way, if this causes issues, we can just revert it. 
+            # Either way, we now have max bullets, will start on creating items probably
             if keys[self.player1.fire_key] and self.player1.reload == 0:
-                f = Fire(self.player1.pos.x, self.player1.pos.y, self.player1.direction)
-                self.bullet_group.add(f)
-                self.all_group.add(f)
-                self.player1.reload = bullet_config["reload_time"]
+                if self.player1.bullets > 0:
+                    f = Fire(self.player1)
+                    self.bullet_group.add(f)
+                    self.all_group.add(f)
+                    self.player1.bullets -= 1
+                    self.player1.reload = bullet_config["reload_time"]
 
             if keys[self.player2.fire_key] and self.player2.reload == 0:
-                f = Fire(self.player2.pos.x, self.player2.pos.y, self.player2.direction)
-                self.bullet_group.add(f)
-                self.all_group.add(f)
-                self.player2.reload = bullet_config["reload_time"]
+                if self.player2.bullets > 0:
+                    f = Fire(self.player2)
+                    self.bullet_group.add(f)
+                    self.all_group.add(f)
+                    self.player2.bullets -= 1
+                    self.player2.reload = bullet_config["reload_time"]
             
             # Handles the thruster flames animation the same way you handled the bullets
             if keys[self.player1.thrust_key] and self.player1.flameReload == 0:
@@ -85,6 +91,7 @@ class Game:
 
             self.all_group.update()
             self.all_group.draw(self.screen)
+            self.gui.update()
             pygame.display.update()
 
 

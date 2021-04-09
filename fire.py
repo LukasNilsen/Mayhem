@@ -4,11 +4,11 @@ from config import bullet_config
 BULLET = r"resources\bullet.png"
 
 class Fire(pygame.sprite.Sprite):
-    def __init__(self, x, y, direction):
+    def __init__(self, player):
         super().__init__()
 
-        self.direction = direction
-        self.pos = pygame.Vector2([x + self.direction.x * 20, y + self.direction.y * 20])
+        self.direction = player.direction
+        self.pos = pygame.Vector2([player.pos.x + self.direction.x * 20, player.pos.y + self.direction.y * 20])
         self.speed = bullet_config["speed"]
 
         self.image = pygame.image.load(BULLET).convert_alpha()

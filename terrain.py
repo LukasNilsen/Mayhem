@@ -1,15 +1,15 @@
 import pygame
-from config import BrickConfig
+from config import brickConfig
 
 from config import SCREEN_X, SCREEN_Y
 
-EXAMPLE_MAP_1 = r"resources\example_map.png"
+EXAMPLE_MAP_1 = r"resources\example_map2.png"
 TEST = r"resources\test_test.png"
 
 
 class Terrain(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, width, height, type):
+    def __init__(self):
         super().__init__()
 
         self.pos = pygame.Vector2([0, 0])

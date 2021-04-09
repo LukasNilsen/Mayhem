@@ -17,7 +17,8 @@ world = {
 ship_config = {
     "max_fuel": 1000,
     "engine_strength": 1.02,
-    "max_bullets": 30
+    "max_bullets": 30,
+    "max_health": 3
 }
 
 bullet_config = {
@@ -49,6 +50,6 @@ brickConfig = {
     "Green": (0, 255, 0)
 }
 
-brickPos = {
-    1 = []
-}
+# brickPos = {
+#     1 = []
+# }
