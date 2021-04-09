@@ -1,13 +1,14 @@
 import pygame
 
-from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig
+from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList
 from fire import Fire
 from player import Player
 from ThrustAnimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
+from Items import Item
 
-
+# Author Lukas Nilsen & Adrian L Moen
 class Game:
     
     def __init__(self):
@@ -21,13 +22,15 @@ class Game:
         self.all_group = pygame.sprite.Group()
         self.bullet_group = pygame.sprite.Group()
         self.terrain_group = pygame.sprite.Group()
+        self.item_group = pygame.sprite.Group()
 
         self.player1 = Player("a", "d", "w", "space", 1)
         self.player2 = Player("left", "right", "up", "m", 2)
         self.player_group.add(self.player1, self.player2)
         self.gui = GUI(self.player1, self.player2, self.screen)
 
-        self.terrain = Terrain()
+        self.generateTerrain()
+        self.generateItems()
 
         self.all_group.add(self.player1, self.player2, self.terrain)
 
@@ -36,6 +39,8 @@ class Game:
         
         self.player1.pos = pygame.Vector2([200, 300])
         self.player2.pos = pygame.Vector2([SCREEN_X-200, 300])
+
+
 
 
     def main(self):
@@ -87,7 +92,7 @@ class Game:
                 self.player2.flameReload = flameConfig["delay"]
 
             for player in self.player_group:
-                player.collision(self.bullet_group, self.terrain)
+                player.collision(self.bullet_group, self.terrain, self.item_group)
 
             # Added a self.Gui.update() method call, since it is not part of any group update
             self.all_group.update()
@@ -95,6 +100,13 @@ class Game:
             self.gui.update()
             pygame.display.update()
 
+    def generateTerrain(self):
+        self.terrain = Terrain()
+    
+    def generateItems(self):
+        fuel = Item(200, 200, itemList["fuel"])
+        self.item_group.add(fuel)
+        self.all_group.add(fuel)
 
 if __name__ == "__main__":
     game = Game()

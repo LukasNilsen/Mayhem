@@ -3,7 +3,10 @@ from config import bullet_config
 
 BULLET = r"resources\bullet.png"
 
+# Author Lukas Nilsen
 class Fire(pygame.sprite.Sprite):
+
+    # Author Lukas Nilsen
     def __init__(self, player):
         super().__init__()
 
@@ -17,6 +20,7 @@ class Fire(pygame.sprite.Sprite):
 
         self.since_birth = 0
 
+    # Author Lukas Nilsen
     def update(self):
         self.pos += self.direction.normalize() * self.speed
         self.rect.center = round(self.pos.x), round(self.pos.y)

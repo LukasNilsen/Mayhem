@@ -6,7 +6,7 @@ from config import SCREEN_X, SCREEN_Y
 EXAMPLE_MAP_1 = r"resources\example_map2.png"
 TEST = r"resources\test_test.png"
 
-
+# Author Adrian L Moen & Lukas Nilsen
 class Terrain(pygame.sprite.Sprite):
 
     def __init__(self):

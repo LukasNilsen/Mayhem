@@ -9,8 +9,10 @@ FRAME5 = r"resources\Burst5.png"
 FRAME6 = r"resources\Burst6.png"
 FRAME7 = r"resources\Burst7.png"
 
+# Author Adrian L Moen
 class ThrustAnimation(pygame.sprite.Sprite):
 
+    # Author Adrian L Moen
     def __init__(self, playerPos, playerDirection, player):
         super().__init__()
 
@@ -34,6 +36,7 @@ class ThrustAnimation(pygame.sprite.Sprite):
 
         self.timer = 0
 
+    # Author Adrian L Moen
     def update(self):
 
         # might be wrong, but goes around 160 frames per second it seems
@@ -59,7 +62,7 @@ class ThrustAnimation(pygame.sprite.Sprite):
             self.image = pygame.transform.rotate(self.Frame7, self.angle).convert_alpha()
 
         self.playerPos -= self.playerDirection * 2
-        self.rect = self.rect =self.image.get_rect(center=(round(self.playerPos.x-self.playerDirection.x*32), round(self.playerPos.y-self.playerDirection.y*32)))
+        self.rect = self.image.get_rect(center=(round(self.playerPos.x-self.playerDirection.x*32), round(self.playerPos.y-self.playerDirection.y*32)))
 
         if self.timer > 38:
             self.kill()

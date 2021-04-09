@@ -50,6 +50,13 @@ brickConfig = {
     "Green": (0, 255, 0)
 }
 
-# brickPos = {
-#     1 = []
-# }
+itemConfig = {
+    "width": 32,
+    "height": 32
+}
+
+itemList = {
+    "fuel": 1,
+    "bomb": 2,
+    "ammo": 3
+}

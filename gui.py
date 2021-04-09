@@ -4,14 +4,17 @@ from config import SCREEN_X
 pygame.font.init()
 myfont = pygame.font.SysFont("calibri", 20)
 
-
+# Author Lukas Nilsen
 class GUI():
+    
+    # Author Lukas Nilsen
     def __init__(self, player1, player2, screen):
 
         self.screen = screen
         self.player1 = player1
         self.player2 = player2
 
+    # Author Lukas Nilsen
     def update(self):
 
         player1_score = myfont.render(f"P1 Score: {self.player1.score}", False, (0,0,0))
