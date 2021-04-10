@@ -6,10 +6,13 @@ SHIP2_OFF = r"resources\Player2.png"
 SHIP1_ON = r"resources\Player1Moving.png"
 SHIP2_ON = r"resources\Player2Moving.png"
 
-EXPLOSION = r"resources\explosion.png"
+EXPLOSION = r"resources\aaa.png"
 
 
 class Ship(pygame.sprite.Sprite):
+    """
+
+    """
     def __init__(self, player_number):
         super().__init__()
 
@@ -49,7 +52,7 @@ class Ship(pygame.sprite.Sprite):
         self.health = self.max_health
 
         self.alive = True
-        self.alive_ctr = 0
+        self.since_birth = 0
 
     def action(self, keys):
 
@@ -98,43 +101,40 @@ class Ship(pygame.sprite.Sprite):
                 collision = self.image_mask.overlap(i.image_mask, bullet_ship_offset)
 
                 if collision:
-                    self.health -= 2
+                    self.health -= 1
                     i.kill()
 
-        # If ship crashes into terrain
+        # Checks if ship collides with terrain
         ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
         ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
         
-        if ship_terrain_collision and self.alive_ctr > 20:
+        if ship_terrain_collision and self.since_birth > 20:
             self.health -= 1
+            self.velocity *= -1
 
-        if self.health == 0:
-            self.alive = 0
+        if self.health <= 0:
+            self.alive = False
         
         for i in items:
             item_ship_offset = (int(i.rect.left-self.rect.left), int(i.rect.top-self.rect.top))
             item_collision = self.image_mask.overlap(i.image_mask, item_ship_offset)
             if item_collision:
-                i.recepient = self
+                i.recipient = self
                 i.activated = 1
 
     def update(self):
 
         if self.alive:
+
             self.edges()
 
-            self.alive_ctr += 1
+            self.since_birth += 1
 
             # Calculating the forces acting on the ship, and adding them to the velocity of it
             forces = self.acceleration + self.gravity
             self.velocity += forces
             self.velocity *= (1 - world["drag"])
 
-            # Calculating the forces acting on the ship, and adding them to the velocity of it.
-            # I've removed gravity as of now for testing purposes.
-            forces = self.acceleration
-            self.velocity += forces
-            self.velocity *= (1 - world["drag"])
             # Updating position of the ship
             self.pos = self.pos + self.velocity
 

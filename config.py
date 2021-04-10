@@ -1,16 +1,10 @@
 import pygame
 
-# Maybe we shouldn't use dictionaries and instead just use variables? or a mix? We'll see.
-
-# Perhaps variables, might be more coherent and easier to read with dictionaries?
-# Maybe switch out w,a,d out with up left right etc... nvm see that it's needed for split screen, if we get far enough we could try hosting on a server, maybe sit down with a TA for that.
-# NOTE: in main.py, everything should be in classes, no stray methods or functions, so we need to figure out a way to do that (this goes for the whole project fyi)
-
-SCREEN_X = 1600
-SCREEN_Y = 900
+SCREEN_X = 1920
+SCREEN_Y = 1080
 
 world = {
-    "gravity": 0.00,
+    "gravity": 0.00,        # ~0.02 for "semi-realistic" gravity
     "drag": 0.01
 }
 

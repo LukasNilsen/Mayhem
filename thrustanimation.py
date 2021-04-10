@@ -11,14 +11,15 @@ FRAME7 = r"resources\Burst7.png"
 
 # Author Adrian L Moen
 class ThrustAnimation(pygame.sprite.Sprite):
+    """
 
-    # Author Adrian L Moen
-    def __init__(self, playerPos, playerDirection, player):
+    """
+    def __init__(self, player_position, player_direction, player):
         super().__init__()
 
-        self.direction = playerDirection
-        self.playerPos = playerPos
-        self.playerDirection = playerDirection.normalize()
+        self.direction = player_direction
+        self.player_pos = player_position
+        self.player_direction = player_direction.normalize()
         self.pos = pygame.Vector2()
 
         self.angle = player.angle
@@ -32,14 +33,13 @@ class ThrustAnimation(pygame.sprite.Sprite):
         self.Frame7 = pygame.image.load(FRAME7)
 
         self.image = pygame.transform.rotate(self.Frame1, self.angle).convert_alpha()
-        self.rect =self.image.get_rect(center=(round(self.playerPos.x-self.playerDirection.x*32), round(self.playerPos.y-self.playerDirection.y*32)))
+        self.rect =self.image.get_rect(center=(round(self.player_pos.x - self.player_direction.x * 32), round(self.player_pos.y - self.player_direction.y * 32)))
 
         self.timer = 0
 
     # Author Adrian L Moen
     def update(self):
 
-        # might be wrong, but goes around 160 frames per second it seems
         self.timer += 1
         
         # Animates the flame
@@ -61,8 +61,8 @@ class ThrustAnimation(pygame.sprite.Sprite):
         elif self.timer > 35 and self.timer < 38:
             self.image = pygame.transform.rotate(self.Frame7, self.angle).convert_alpha()
 
-        self.playerPos -= self.playerDirection * 2
-        self.rect = self.image.get_rect(center=(round(self.playerPos.x-self.playerDirection.x*32), round(self.playerPos.y-self.playerDirection.y*32)))
+        # self.player_pos -= self.player_direction
+        # self.rect = self.image.get_rect(center=(round(self.player_pos.x - self.player_direction.x * 32), round(self.player_pos.y - self.player_direction.y * 32)))
 
         if self.timer > 38:
             self.kill()

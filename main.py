@@ -1,22 +1,29 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 
 from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList
 from fire import Fire
 from player import Player
-from ThrustAnimation import ThrustAnimation
+from thrustanimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
-from Items import Item
+from items import Item
 
-# Author Lukas Nilsen & Adrian L Moen
 class Game:
-    
+    """
+
+    """
     def __init__(self):
 
         pygame.init()
         pygame.display.set_caption("Mayhem")
 
-        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
+        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
 
         self.player_group = pygame.sprite.Group()
         self.all_group = pygame.sprite.Group()
@@ -40,9 +47,6 @@ class Game:
         self.player1.pos = pygame.Vector2([200, 300])
         self.player2.pos = pygame.Vector2([SCREEN_X-200, 300])
 
-
-
-
     def main(self):
         
         while True:
@@ -59,26 +63,25 @@ class Game:
             # Log key inputs
             keys = pygame.key.get_pressed()
 
+            if keys[pygame.K_ESCAPE]:
+                exit()
+
             for i in self.player_group:
                 i.input(keys)
 
-            # Changed so that instead of sending in just direction and x/y, we send in the whole player object, thought it was needed then apparently not, either way, if this causes issues, we can just revert it. 
-            # The changes in Fire.py relate to this. Either way, we now have max bullets, will start on creating items probably.
-            if keys[self.player1.fire_key] and self.player1.reload == 0:
-                if self.player1.bullets > 0:
-                    f = Fire(self.player1)
-                    self.bullet_group.add(f)
-                    self.all_group.add(f)
-                    self.player1.bullets -= 1
-                    self.player1.reload = bullet_config["reload_time"]
+            if keys[self.player1.fire_key] and self.player1.reload == 0 and self.player1.bullets > 0:
+                f = Fire(self.player1)
+                self.bullet_group.add(f)
+                self.all_group.add(f)
+                self.player1.bullets -= 1
+                self.player1.reload = bullet_config["reload_time"]
 
-            if keys[self.player2.fire_key] and self.player2.reload == 0:
-                if self.player2.bullets > 0:
-                    f = Fire(self.player2)
-                    self.bullet_group.add(f)
-                    self.all_group.add(f)
-                    self.player2.bullets -= 1
-                    self.player2.reload = bullet_config["reload_time"]
+            if keys[self.player2.fire_key] and self.player2.reload == 0 and self.player2.bullets > 0:
+                f = Fire(self.player2)
+                self.bullet_group.add(f)
+                self.all_group.add(f)
+                self.player2.bullets -= 1
+                self.player2.reload = bullet_config["reload_time"]
             
             # Handles the thruster flames animation the same way you handled the bullets
             if keys[self.player1.thrust_key] and self.player1.flameReload == 0:
@@ -94,7 +97,6 @@ class Game:
             for player in self.player_group:
                 player.collision(self.bullet_group, self.terrain, self.item_group)
 
-            # Added a self.Gui.update() method call, since it is not part of any group update
             self.all_group.update()
             self.all_group.draw(self.screen)
             self.gui.update()
@@ -102,11 +104,13 @@ class Game:
 
     def generateTerrain(self):
         self.terrain = Terrain()
-    
+
+
     def generateItems(self):
         fuel = Item(200, 200, itemList["fuel"])
         self.item_group.add(fuel)
         self.all_group.add(fuel)
+
 
 if __name__ == "__main__":
     game = Game()
