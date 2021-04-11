@@ -19,6 +19,8 @@ class Item(pygame.sprite.Sprite):
         self.type = item
         self.itemTypeCheck()
 
+        self.alreadyShot = 0
+
     # Author Adrian L Moen
     def itemTypeCheck(self):
         if self.type == 1:
@@ -60,5 +62,3 @@ class Item(pygame.sprite.Sprite):
                 self.ammo()
 
             self.kill()
-
-        
