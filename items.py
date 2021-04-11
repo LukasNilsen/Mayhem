@@ -1,5 +1,8 @@
-# Author Adrian L Moen
+"""
+Author: Lukas Nilsen & Adrian L Moen
 
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
 import pygame
 from config import itemConfig
 
@@ -21,7 +24,7 @@ class Item(pygame.sprite.Sprite):
         self.type = item
         self.itemTypeCheck()
 
-    # Author Adrian L Moen
+
     def itemTypeCheck(self):
         if self.type == 1:
             print("fuel spawned", self.pos.x, self.pos.y, self.width, self.height)

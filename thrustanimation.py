@@ -1,3 +1,9 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 from ship import Ship
 
@@ -9,7 +15,6 @@ FRAME5 = r"resources\Burst5.png"
 FRAME6 = r"resources\Burst6.png"
 FRAME7 = r"resources\Burst7.png"
 
-# Author Adrian L Moen
 class ThrustAnimation(pygame.sprite.Sprite):
     """
 
@@ -37,7 +42,6 @@ class ThrustAnimation(pygame.sprite.Sprite):
 
         self.timer = 0
 
-    # Author Adrian L Moen
     def update(self):
 
         self.timer += 1

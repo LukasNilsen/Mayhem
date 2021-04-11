@@ -1,11 +1,14 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 from config import brickConfig
-
 from config import SCREEN_X, SCREEN_Y
 
 EXAMPLE_MAP = r"resources\example_map2.png"
-
-
 
 class Terrain(pygame.sprite.Sprite):
     """

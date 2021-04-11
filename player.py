@@ -1,3 +1,9 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 from ship import Ship
 from config import keyboard
@@ -13,6 +19,9 @@ class Player(Ship):
         self.fire_key = keyboard[fire]
 
         self.player = player_number
+
+        self.score = 0
+
 
     def input(self, keys):
 

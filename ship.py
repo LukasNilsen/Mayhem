@@ -1,3 +1,9 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 from config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y
 
@@ -46,7 +52,6 @@ class Ship(pygame.sprite.Sprite):
 
         self.reload = 0
         self.flameReload = 0
-        self.score = 0
         self.fuel = self.max_fuel
         self.bullets = self.max_bullets
         self.health = self.max_health
@@ -83,7 +88,6 @@ class Ship(pygame.sprite.Sprite):
             self.pos.y = 0
         if self.pos.y < 0:
             self.pos.y = SCREEN_Y
-
 
     def collision(self, bullets, terrain, items):
 
@@ -159,3 +163,29 @@ class Ship(pygame.sprite.Sprite):
         if not self.alive:
             self.image = pygame.image.load(EXPLOSION)
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+
+        self.image_mask = pygame.mask.from_surface(self.image)
+
+
+    def reset_ship(self):
+
+        self.pos = pygame.Vector2([500, 200])
+        self.direction = pygame.Vector2([0, -1])
+        self.acceleration = pygame.Vector2([0, 0])
+        self.velocity = pygame.Vector2([0, 0])
+
+        self.angle = 0
+        self.engine_on = 0
+
+        self.image = self.ship_off
+        self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+        self.image_mask = pygame.mask.from_surface(self.image)
+
+        self.reload = 0
+        self.flameReload = 0
+        self.fuel = self.max_fuel
+        self.bullets = self.max_bullets
+        self.health = self.max_health
+
+        self.alive = True
+        self.since_birth = 0
