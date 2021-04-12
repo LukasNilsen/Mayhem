@@ -20,7 +20,6 @@ class GUI():
 
     def update(self):
         """ Re-renders the GUI-text with new values """
-
         player1_score = myfont.render(f"Score: {self.player1.score}", False, (0,0,0))
         player2_score = myfont.render(f"Score: {self.player2.score}", False, (0, 0, 0))
         self.screen.blit(player1_score, (SCREEN_X / 4, 20))

@@ -12,19 +12,11 @@ BULLET = r"resources\bullet.png"
 class Fire(pygame.sprite.Sprite):
     """
     A class to represent bullets
-
-    Attributes
-    ----------
-    direction : vector
-        direction of the bullet
-    pos : vector
-        position of the bullet
-    speed : int
-        speed of the bullet
-    image :
-
     """
     def __init__(self, player):
+        """
+        Initializes the object
+        """
         super().__init__()
 
         self.direction = player.direction
@@ -38,6 +30,9 @@ class Fire(pygame.sprite.Sprite):
         self.since_birth = 0    # Bullet has to travel a certain distance before it's "primed" and can kill
 
     def update(self):
+        """
+        Updates position of object.
+        """
         self.pos += self.direction.normalize() * self.speed
         self.rect.center = round(self.pos.x), round(self.pos.y)
 

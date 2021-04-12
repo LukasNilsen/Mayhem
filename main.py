@@ -28,7 +28,9 @@ class Game:
 
     """
     def __init__(self):
+        """
 
+        """
         self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
 
         self.player_group = pygame.sprite.Group()
@@ -114,17 +116,23 @@ class Game:
             pygame.display.update()
 
     def generate_terrain(self):
+        """
+
+        """
         self.terrain = Terrain()
 
     def generate_items(self):
+        """
+
+        """
         fuel = Item(200, 200, itemList["fuel"])
         self.item_group.add(fuel)
         self.all_group.add(fuel)
 
     def reset_game(self):
         """
-
-
+        Method that resets the game. Called when one of the players die.
+        Does not change scores
         """
 
         for i in self.bullet_group:
