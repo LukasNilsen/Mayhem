@@ -1,3 +1,9 @@
+"""
+Author: Lukas Nilsen & Adrian L Moen
+
+TEXT TEXT TEXT TEXT TEXT TEXT
+"""
+
 import pygame
 from config import bullet_config, SCREEN_X, SCREEN_Y
 
@@ -5,9 +11,12 @@ BULLET = r"resources\bullet.png"
 
 class Fire(pygame.sprite.Sprite):
     """
-
+    A class to represent bullets
     """
     def __init__(self, player):
+        """
+        Initializes the object
+        """
         super().__init__()
 
         self.direction = player.direction
@@ -18,14 +27,17 @@ class Fire(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
         self.image_mask = pygame.mask.from_surface(self.image)
 
-        self.since_birth = 0
+        self.since_birth = 0    # Bullet has to travel a certain distance before it's "primed" and can kill
 
     def update(self):
+        """
+        Updates position of object.
+        """
         self.pos += self.direction.normalize() * self.speed
         self.rect.center = round(self.pos.x), round(self.pos.y)
 
         self.since_birth += 1
 
-        # Kills the bullet if it is out of the screen
+        # Kills bullet if it's out of bounds
         if self.pos.x > SCREEN_X or self.pos.x < 0 or self.pos.y > SCREEN_Y or self.pos.y < 0:
             self.kill()
