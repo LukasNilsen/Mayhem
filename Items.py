@@ -38,7 +38,7 @@ class Item(pygame.sprite.Sprite):
 
     # Author Adrian L Moen
     def fuel(self):
-        self.recepient.fuel = self.recepient.max_fuel
+        self.recipient.fuel = self.recipient.max_fuel
 
     # Author Adrian L Moen
     def bomb(self):
@@ -46,7 +46,7 @@ class Item(pygame.sprite.Sprite):
 
     # Author Adrian L Moen
     def ammo(self):
-        self.recepient.bullets += 20 
+        self.recipient.bullets += 20 
     
     # Author Adrian L Moen
     def update(self):
