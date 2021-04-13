@@ -1,7 +1,5 @@
 """
 Author: Lukas Nilsen & Adrian L Moen
-
-TEXT TEXT TEXT TEXT TEXT TEXT
 """
 
 import pygame
@@ -14,8 +12,6 @@ from thrustanimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
 from items import Item
-
-
 
 
 pygame.init()
@@ -179,6 +175,19 @@ class Game:
 
 
 if __name__ == "__main__":
+
     game = Game()
-    time.sleep(0.5) # To let objects initialize
-    game.main()
+    time.sleep(0.1) # To let objects initialize
+    import cProfile
+    cProfile.run("game.main()", "output.dat")
+
+    import pstats
+    from pstats import SortKey
+
+    with open("output_time.txt", "w") as f:
+        p = pstats.Stats("output.dat", stream = f)
+        p.sort_stats("time").print_stats()
+
+    with open("output_calls.txt", "w") as f:
+        p = pstats.Stats("output.dat", stream=f)
+        p.sort_stats("calls").print_stats()

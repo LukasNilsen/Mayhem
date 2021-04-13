@@ -1,7 +1,5 @@
 """
 Author: Lukas Nilsen & Adrian L Moen
-
-
 """
 
 import pygame

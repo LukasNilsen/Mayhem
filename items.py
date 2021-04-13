@@ -1,7 +1,5 @@
 """
 Author: Lukas Nilsen & Adrian L Moen
-
-TEXT TEXT TEXT TEXT TEXT TEXT
 """
 import pygame
 from config import itemConfig
