@@ -12,7 +12,7 @@ from player import Player
 from thrustanimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
-from items import Item
+from Items import Item
 
 
 
@@ -31,7 +31,7 @@ class Game:
         """
 
         """
-        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
 
         self.player_group = pygame.sprite.Group()
         self.all_group = pygame.sprite.Group()
@@ -72,7 +72,7 @@ class Game:
 
             time_passed = self.clock.tick(self.hz) / 1000.0
 
-            print(1/time_passed)
+            # print(1/time_passed)
 
             # Log key inputs
             keys = pygame.key.get_pressed()
