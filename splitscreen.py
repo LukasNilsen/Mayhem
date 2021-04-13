@@ -1,8 +1,15 @@
+"""
+Author : Lukas Nilsen & Adrian L Moen
+
+TEST TEST TEST
+
+This is not yet implemented and not touched for weeeeks.
+Only messed around with it and figured out how to eventually do it if we decide so.
+"""
+
 import pygame
 from config import SCREEN_X, SCREEN_Y
 
-# THIS IS A MESS - No need to read, just playing around with it
-# Code isn't supposed to be pretty ;D
 
 TESTMAP = r"resources\SPLITSCREEN_TEST.png"
 

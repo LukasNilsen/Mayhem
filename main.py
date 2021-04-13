@@ -5,6 +5,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT
 """
 
 import pygame
+import time
 
 from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList
 from fire import Fire
@@ -179,4 +180,5 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
+    time.sleep(0.5) # To let objects initialize
     game.main()
