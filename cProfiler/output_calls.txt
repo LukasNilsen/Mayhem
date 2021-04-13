@@ -1,0 +1,63 @@
+Tue Apr 13 18:26:41 2021    cProfiler\output.dat
+
+         115567 function calls in 9.045 seconds
+
+   Ordered by: call count
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    11008    0.008    0.000    0.008    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:360(sprites)
+     8466    0.005    0.000    0.005    0.000 {built-in method builtins.round}
+     8408    0.007    0.000    0.007    0.000 {method 'overlap' of 'pygame.mask.Mask' objects}
+     8256    0.006    0.000    0.014    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:415(__iter__)
+     8256    0.002    0.000    0.002    0.000 {built-in method builtins.iter}
+     8256    0.047    0.000    0.047    0.000 {method 'blit' of 'pygame.Surface' objects}
+     8256    0.053    0.000    0.053    0.000 {method 'render' of 'pygame.font.Font' objects}
+     7080    0.005    0.000    0.005    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:546(<genexpr>)
+     2880    0.005    0.000    0.005    0.000 {method 'get_rect' of 'pygame.Surface' objects}
+     2763    0.142    0.000    0.142    0.000 {built-in method pygame.mask.from_surface}
+     2752    0.007    0.000    0.017    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\player.py:63(input)
+     2752    0.008    0.000    0.010    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\ship.py:105(action)
+     2752    0.005    0.000    0.005    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\ship.py:132(edges)
+     2752    0.017    0.000    0.031    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\ship.py:143(collision)
+     2752    0.027    0.000    0.223    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\ship.py:200(update)
+     2752    0.041    0.000    0.041    0.000 {built-in method pygame.transform.rotate}
+     1946    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+     1470    0.004    0.000    0.006    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\fire.py:52(update)
+     1470    0.000    0.000    0.000    0.000 {method 'normalize' of 'pygame.math.Vector2' objects}
+     1377    0.002    0.000    0.002    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\game.py:166(check_alive)
+     1377    0.035    0.000    0.035    0.000 {built-in method builtins.print}
+     1377    0.401    0.000    0.401    0.000 {method 'fill' of 'pygame.Surface' objects}
+     1377    0.013    0.000    0.013    0.000 {built-in method pygame.key.get_pressed}
+     1377    3.113    0.002    3.113    0.002 {method 'tick' of 'Clock' objects}
+     1377    0.023    0.000    0.023    0.000 {built-in method pygame.event.get}
+     1376    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:169(update)
+     1376    0.007    0.000    0.238    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:521(update)
+     1376    0.011    0.000    3.721    0.003 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:533(draw)
+     1376    0.018    0.000    0.117    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\gui.py:45(update)
+     1376    0.004    0.000    0.004    0.000 {method 'update' of 'dict' objects}
+     1376    0.001    0.000    0.001    0.000 {built-in method builtins.hasattr}
+     1376    3.698    0.003    3.704    0.003 {method 'blits' of 'pygame.Surface' objects}
+     1376    1.272    0.001    1.272    0.001 {built-in method pygame.display.update}
+      944    0.002    0.000    0.002    0.000 {method 'rotate' of 'pygame.math.Vector2' objects}
+      117    0.000    0.000    0.001    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\items.py:44(update)
+       24    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:385(remove_internal)
+       22    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:153(add_internal)
+       22    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:373(add_internal)
+       22    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:396(has_internal)
+       22    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:421(add)
+       22    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       12    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:183(kill)
+       12    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
+       11    0.000    0.000    0.003    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\fire.py:31(__init__)
+       11    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pygame\sprite.py:112(__init__)
+       11    0.000    0.000    0.000    0.000 {method 'convert_alpha' of 'pygame.Surface' objects}
+       11    0.003    0.000    0.003    0.000 {built-in method pygame.image.load}
+        1    0.000    0.000    0.000    0.000 C:\Users\lukas\AppData\Local\Programs\Python\Python38-32\lib\_sitebuiltins.py:19(__call__)
+        1    0.051    0.051    9.045    9.045 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\game.py:55(main)
+        1    0.000    0.000    0.000    0.000 C:\Users\lukas\Desktop\INF-1400-Assignments\Mayhem\Mayhem\items.py:34(fuel)
+        1    0.000    0.000    9.045    9.045 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 {method 'close' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    9.045    9.045 {built-in method builtins.exec}
+
+
