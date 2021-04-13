@@ -1,7 +1,5 @@
 """
 Author: Lukas Nilsen & Adrian L Moen
-
-TEXT TEXT TEXT TEXT TEXT TEXT
 """
 
 import pygame
@@ -12,8 +10,34 @@ myfont = pygame.font.SysFont("calibri", 20)
 
 
 class GUI():
+    """
+    A class to handle GUI
+
+    Attributes:
+    -----------
+    screen : pygame.display
+    player1 : player-object
+    player2 : player-object
+
+    Methods:
+    -----------
+    update() : None
+        Re-render GUI and blit it to screen
+    """
+
     def __init__(self, player1, player2, screen):
-        """ Initializes the GUI """
+        """
+        Constructs the necessary attributes for the object.
+
+        Parameters
+        -----------
+        player1 : player-object
+            direction and position taken from player1-object
+        player2 : player-object
+            direction and position taken from player2-object
+        screen : pygame.display
+            where GUI should be blit to
+        """
         self.screen = screen
         self.player1 = player1
         self.player2 = player2

@@ -1,7 +1,5 @@
 """
 Author: Lukas Nilsen & Adrian L Moen
-
-TEXT TEXT TEXT TEXT TEXT TEXT
 """
 
 import pygame
@@ -17,9 +15,51 @@ EXPLOSION = r"resources\aaa.png"
 
 class Ship(pygame.sprite.Sprite):
     """
+    A class to handle the ships
 
+    Attributes:
+    ----------
+    pos : vector
+        vector from [0,0] to the position of the ship
+    direction : vector
+        vector that points the same way the ship does
+    acceleration : vector
+        acceleration vector of forces acting on the ship
+    velocity : vector
+        vector of where the ship is moving (not pointing)
+    gravity : vector
+        gravity vector
+    health : int
+        current health of the ship
+    bullets : int
+        bullets left in "mag"
+    alive : bol
+    max_fuel : int
+    max_bullets : int
+    max_health : int
+
+    Methods
+    ----------
+    action(keys) : None
+        rotates, thrusts and/or shoots depending on input keys
+    edges() : None
+        if ship goes out of the screen, it goes to the opposite side of the screen
+    collision(bullets, item, terrain) : None
+        checks if there is a collision between ship and any of the parameters
+    reset_ship()
+        resets the ship to the __init__ state
+    update()
+        updates the position of the ship and checks if it's still has health left
     """
     def __init__(self, player_number):
+        """
+        Constructs the necessary attributes for the object.
+
+        Parameters
+        -----------
+        player_number : int
+            set the player number of the ship
+        """
         super().__init__()
 
         self.pos = pygame.Vector2([500, 200])
@@ -50,16 +90,27 @@ class Ship(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
         self.image_mask = pygame.mask.from_surface(self.image)
 
+        # So the player can't shoot every iteration of main while loop
         self.reload = 0
         self.flameReload = 0
+
+        # Ship starts out with max fuel, bullet and health
         self.fuel = self.max_fuel
         self.bullets = self.max_bullets
         self.health = self.max_health
 
         self.alive = True
-        self.since_birth = 0
+        self.since_birth = 0    # Needed because first iteration of the game always says it has collided with terrain
 
     def action(self, keys):
+        """
+        Rotates, thrusts and/or shoots depending on key input
+
+        Parameters
+        ---------
+        keys : list
+            list of pygame.K_x ( x : key )
+        """
 
         if "left" in keys:
             self.direction = self.direction.rotate(-1)
@@ -79,7 +130,7 @@ class Ship(pygame.sprite.Sprite):
             self.engine_on = False
 
     def edges(self):
-
+        """ If ship goes out of bounds, it appears on opposite side of screen"""
         if self.pos.x > SCREEN_X:
             self.pos.x = 0
         if self.pos.x < 0:
@@ -90,20 +141,37 @@ class Ship(pygame.sprite.Sprite):
             self.pos.y = SCREEN_Y
 
     def collision(self, bullets, terrain, items):
+        """
+        Checks if ship crashes with bullets, terrain or items.
+
+        Collision with bullets -> -x health
+        Collision with terrain -> -x health and velocity *= -1
+        Collision with items -> stuff happens depending on what item it "collides with"
+
+        Parameters
+        ----------
+        bullets : list
+            list of bullet-objects
+        items : list
+            list of item-objects
+        terrain : terrain-object
+        """
 
         # If ship gets hits by bullet or bullet hits terrain
         for i in bullets:
 
+            # If bullet hits terrain
             bullet_terrain_offset = (int(i.rect.left - terrain.rect.left), int(i.rect.top - terrain.rect.top))
             bullet_terrain_collision = terrain.image_mask.overlap(i.image_mask, bullet_terrain_offset)
-
             if bullet_terrain_collision:
                 i.kill()
 
+            # If bullet hits ship
             if i.since_birth > bullet_config["priming_time"]:  # Bullet "priming time"
                 bullet_ship_offset = (int(i.rect.left - self.rect.left), int(i.rect.top - self.rect.top))
                 collision = self.image_mask.overlap(i.image_mask, bullet_ship_offset)
 
+                # What happens when bullet hits ship
                 if collision:
                     self.health -= 1
                     i.kill()
@@ -111,14 +179,17 @@ class Ship(pygame.sprite.Sprite):
         # Checks if ship collides with terrain
         ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
         ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
-        
+
+        # What happens when bullet hits ship
         if ship_terrain_collision and self.since_birth > 20:
             self.health -= 1
             self.velocity *= -1
 
+        # Checks if ship has health left
         if self.health <= 0:
             self.alive = False
-        
+
+        # Checks if ship "collides" with items
         for i in items:
             item_ship_offset = (int(i.rect.left-self.rect.left), int(i.rect.top-self.rect.top))
             item_collision = self.image_mask.overlap(i.image_mask, item_ship_offset)
@@ -127,11 +198,10 @@ class Ship(pygame.sprite.Sprite):
                 i.activated = 1
 
     def update(self):
-
+        """Updates the state of the ship"""
+        # Only updates the state of the ship if it's still alive
         if self.alive:
-
             self.edges()
-
             self.since_birth += 1
 
             # Calculating the forces acting on the ship, and adding them to the velocity of it
@@ -142,10 +212,9 @@ class Ship(pygame.sprite.Sprite):
             # Updating position of the ship
             self.pos = self.pos + self.velocity
 
-            # "Reloads" the gun
+            # "Reloads" the gun and thrustanimation
             if self.reload > 0:
                 self.reload -= 1
-
             if self.flameReload > 0:
                 self.flameReload -= 1
 
@@ -168,7 +237,7 @@ class Ship(pygame.sprite.Sprite):
 
 
     def reset_ship(self):
-
+        """Resets the ship to __init__ state"""
         self.pos = pygame.Vector2([500, 200])
         self.direction = pygame.Vector2([0, -1])
         self.acceleration = pygame.Vector2([0, 0])
