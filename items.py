@@ -1,6 +1,3 @@
-"""
-Author: Lukas Nilsen & Adrian L Moen
-"""
 import pygame
 from config import itemConfig
 
