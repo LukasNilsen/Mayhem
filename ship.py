@@ -5,14 +5,6 @@ Author: Lukas Nilsen & Adrian L Moen
 import pygame
 from config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y
 
-SHIP1_OFF = r"resources\Player1.png"
-SHIP2_OFF = r"resources\Player2.png"
-SHIP1_ON = r"resources\Player1Moving.png"
-SHIP2_ON = r"resources\Player2Moving.png"
-
-EXPLOSION = r"resources\aaa.png"
-
-
 class Ship(pygame.sprite.Sprite):
     """
     A class to handle the ships
@@ -78,6 +70,13 @@ class Ship(pygame.sprite.Sprite):
         self.max_bullets = ship_config["max_bullets"]
         self.max_health = ship_config["max_health"]
 
+        SHIP1_OFF = ship_config["SHIP1_OFF"]
+        SHIP2_OFF = ship_config["SHIP2_OFF"]
+        SHIP1_ON = ship_config["SHIP1_ON"]
+        SHIP2_ON = ship_config["SHIP2_ON"]
+        
+        self.EXPLOSION = ship_config["EXPLOSION"]
+
         # Loading image for engine_on and engine_off
         if self.player_number == 1:
             self.ship_on = pygame.image.load(SHIP1_ON)
@@ -102,6 +101,13 @@ class Ship(pygame.sprite.Sprite):
         self.alive = True
         self.since_birth = 0    # Needed because first iteration of the game always says it has collided with terrain
 
+        self.collisionIterations = 0
+        self.currentOverlap = None
+        self.newOverlap = None
+        self.previousVelocity = self.velocity
+        self.posCheck = True
+
+
     def action(self, keys):
         """
         Rotates, thrusts and/or shoots depending on key input
@@ -123,7 +129,7 @@ class Ship(pygame.sprite.Sprite):
         if "thrust" in keys and self.fuel > 0:
             self.acceleration = self.direction * 0.05
             self.engine_on = True
-            self.fuel -= 1
+            self.fuel -= 0
 
         else:
             self.acceleration = [0, 0]
@@ -176,18 +182,30 @@ class Ship(pygame.sprite.Sprite):
                     self.health -= 1
                     i.kill()
 
+
         # Checks if ship collides with terrain
         ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
         ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
 
+        # currentOverlap = self.image_mask.overlap_area(terrain.image_mask, ship_terrain_offset)
+
         # What happens when bullet hits ship
+        # Im assuming you mean "What happens when ship hits terrain" with this one
         if ship_terrain_collision and self.since_birth > 20:
+            
+            #Simpel kollisjonstest, dersom testCollision returnerer 1, er det en høyre eller venstre kollisjon, og velocity.x endres, men funksjonen fungerer ikke enn så lenge, se nederst på siden
+            if self.testCollision(terrain, ship_terrain_offset) == 1:
+                self.velocity.x *= -1
+            elif self.testCollision(terrain, ship_terrain_offset) == 2:
+                self.velocity.y *= -1
+
             self.health -= 1
-            self.velocity *= -1
+
 
         # Checks if ship has health left
         if self.health <= 0:
             self.alive = False
+
 
         # Checks if ship "collides" with items
         for i in items:
@@ -196,6 +214,8 @@ class Ship(pygame.sprite.Sprite):
             if item_collision:
                 i.recipient = self
                 i.activated = 1
+
+
 
     def update(self):
         """Updates the state of the ship"""
@@ -210,7 +230,9 @@ class Ship(pygame.sprite.Sprite):
             self.velocity *= (1 - world["drag"])
 
             # Updating position of the ship
-            self.pos = self.pos + self.velocity
+            if self.posCheck:
+                self.pos += self.velocity
+            
 
             # "Reloads" the gun and thrustanimation
             if self.reload > 0:
@@ -230,10 +252,11 @@ class Ship(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
         if not self.alive:
-            self.image = pygame.image.load(EXPLOSION)
+            self.image = pygame.image.load(self.EXPLOSION)
             self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
 
         self.image_mask = pygame.mask.from_surface(self.image)
+
 
 
     def reset_ship(self):
@@ -258,3 +281,32 @@ class Ship(pygame.sprite.Sprite):
 
         self.alive = True
         self.since_birth = 0
+
+
+
+    # returns 1 if the decision is correct, see the collision handling 
+    def testCollision(self, terrain, offset):
+
+        """
+        Tester for sidekollisjon, hvis ikke er det en top/bunn kollisjon
+        """
+
+        currentOverlap = self.image_mask.overlap(terrain.image_mask, offset)
+        if currentOverlap:
+            oldPos = self.pos
+            self.pos.y -= self.velocity.y
+            self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
+            offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
+            self.posCheck = False
+            self.update()
+            sideOverlap = self.image_mask.overlap(terrain.image_mask, offset)
+            self.posCheck = True
+
+            if sideOverlap:
+                self.pos = oldPos - self.velocity
+                print("side collision")
+                return 1
+            
+            print("over eller under kollisjon")
+            self.pos = oldPos - self.velocity
+            return 2

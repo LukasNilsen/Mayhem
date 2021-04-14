@@ -12,7 +12,14 @@ ship_config = {
     "max_fuel": 1000,
     "engine_strength": 1.02,
     "max_bullets": 40,
-    "max_health": 3
+    "max_health": 3,
+
+    "SHIP1_OFF": r"resources\Player1.png",
+    "SHIP2_OFF": r"resources\Player2.png",
+    "SHIP1_ON": r"resources\Player1Moving.png",
+    "SHIP2_ON": r"resources\Player2Moving.png",
+
+    "EXPLOSION": r"resources\aaa.png"
 }
 
 bullet_config = {
@@ -63,6 +70,15 @@ itemPos = {
     "fuel5": [1000, 700, 1, 32, 32],
     "fuel6": [1270, 250, 1, 32, 32],
     "fuel7": [1500, 700, 1, 32, 32],
+    "fuel8": [600, 500, 1, 32, 32],
+    "fuel9": [1000, 700, 1, 32, 32],
+    "fuel10": [1570, 250, 1, 32, 32],
+    "fuel11": [1500, 400, 1, 32, 32],
+    "fuel12": [1500, 600, 1, 32, 32],
+    "fuel13": [1600, 600, 1, 32, 32],
+    "fuel14": [1500, 700, 1, 32, 32],
+    "fuel15": [1570, 800, 1, 32, 32],
+    "fuel16": [1500, 890, 1, 32, 32],
 
     
 

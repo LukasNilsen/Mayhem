@@ -5,7 +5,7 @@ Author: Lukas Nilsen & Adrian L Moen
 import pygame
 import time
 
-from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList
+from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList, itemPos
 from fire import Fire
 from player import Player
 from thrustanimation import ThrustAnimation
@@ -28,7 +28,7 @@ class Game:
         """
 
         """
-        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
 
         self.player_group = pygame.sprite.Group()
         self.all_group = pygame.sprite.Group()
@@ -69,7 +69,7 @@ class Game:
 
             time_passed = self.clock.tick(self.hz) / 1000.0
 
-            print(1 / time_passed)
+            # print(1 / time_passed)
 
             # Log key inputs
             keys = pygame.key.get_pressed()
@@ -123,9 +123,16 @@ class Game:
         """
 
         """
-        fuel = Item(200, 200, itemList["fuel"])
-        self.item_group.add(fuel)
-        self.all_group.add(fuel)
+        for i in itemPos:
+            if itemPos[i][2] == 1:
+                fuel = Item(itemPos[i][0], itemPos[i][1], itemPos[i][2])
+                self.item_group.add(fuel)
+                self.all_group.add(fuel)
+
+            if itemPos[i][2] == 2:
+                bomb = Item(itemPos[i][0], itemPos[i][1], itemPos[2])
+                self.item_group.add(bomb)
+
 
     def reset_game(self):
         """

@@ -6,7 +6,7 @@ if __name__ == "__main__":
     game = Game()
     time.sleep(0.5)  # To let objects initialize
     import cProfile
-
+    
     cProfile.run("game.main()", r"cProfiler\output.dat")
 
     import pstats
