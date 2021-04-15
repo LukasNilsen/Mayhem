@@ -197,6 +197,3 @@ class Game:
 
             self.wait()
             self.reset_game()
-
-
-
