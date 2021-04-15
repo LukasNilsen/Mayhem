@@ -4,7 +4,7 @@ from config import itemConfig, SCREEN_X, SCREEN_Y
 
 FuelBarrel = r"resources\Fuel.png"
 AmmoBox = r"resources\AmmoBox.png"
-BULLET = r"resources\bullet.png"
+HealthBox = r"resources\Health.png"
 
 # Author Adrian L Moen
 class Item(pygame.sprite.Sprite):
@@ -25,7 +25,7 @@ class Item(pygame.sprite.Sprite):
         if itemType == 1:
             self.image = pygame.image.load(FuelBarrel).convert_alpha()
         if itemType == 2:
-            self.image = pygame.image.load(BULLET).convert_alpha()
+            self.image = pygame.image.load(HealthBox).convert_alpha()
         if itemType == 3:
             self.image = pygame.image.load(AmmoBox).convert_alpha()
 
