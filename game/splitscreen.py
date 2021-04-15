@@ -8,7 +8,7 @@ Only messed around with it and figured out how to eventually do it if we decide 
 """
 
 import pygame
-from config import SCREEN_X, SCREEN_Y
+from game.config import SCREEN_X, SCREEN_Y
 
 
 TESTMAP = r"resources\SPLITSCREEN_TEST.png"

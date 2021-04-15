@@ -3,7 +3,6 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from ship import Ship
 
 FRAME1 = r"resources\Burst1.png"
 FRAME2 = r"resources\Burst2.png"

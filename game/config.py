@@ -5,7 +5,7 @@ SCREEN_Y = 1080
 SCREEN_START = 100
 
 world = {
-    "gravity": 0.00,        # ~0.02 for "semi-realistic" gravity
+    "gravity": 0.02,        # ~0.02 for "semi-realistic" gravity
     "drag": 0.01
 }
 

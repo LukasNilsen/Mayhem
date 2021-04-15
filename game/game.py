@@ -12,6 +12,13 @@ from thrustanimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
 from items import *
+from game.config import bullet_config, flameConfig
+from game.fire import Fire
+from game.player import Player
+from game.thrustanimation import ThrustAnimation
+from game.terrain import Terrain
+from game.gui import GUI
+from game.items import *
 
 pygame.init()
 pygame.display.set_caption("Mayhem")

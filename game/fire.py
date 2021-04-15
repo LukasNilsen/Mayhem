@@ -3,7 +3,7 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from config import bullet_config, SCREEN_X, SCREEN_Y
+from game.config import bullet_config, SCREEN_X, SCREEN_Y
 
 BULLET = r"resources\bullet.png"
 
