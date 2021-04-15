@@ -5,7 +5,7 @@ Author: Lukas Nilsen & Adrian L Moen
 import pygame
 import time
 
-from config import SCREEN_X, SCREEN_Y, bullet_config, flameConfig, itemList, itemPos
+from config import SCREEN_X, SCREEN_Y, SCREEN_START, bullet_config, flameConfig, itemList, itemPos
 from fire import Fire
 from player import Player
 from thrustanimation import ThrustAnimation
@@ -49,7 +49,7 @@ class Game:
         self.hz = 144
         self.clock = pygame.time.Clock()
 
-        self.player1.pos = pygame.Vector2([200, 300])
+        self.player1.pos = pygame.Vector2([200, 400])
         self.player2.pos = pygame.Vector2([SCREEN_X - 200, 300])
 
     def main(self):
@@ -125,17 +125,17 @@ class Game:
         Items are random, but do not collide with terrain, every time
         """
 
-        for i in range(10):
+        for i in range(150):
             fuel = Fuel(self.terrain, self.item_group)
             self.item_group.add(fuel)
             self.all_group.add(fuel)
         
-        for i in range(10):
+        for i in range(0):
             ammo = Ammo(self.terrain, self.item_group)
             self.item_group.add(ammo)
             self.all_group.add(ammo)
 
-        for i in range(5):
+        for i in range(0):
             health = Health(self.terrain, self.item_group)
             self.item_group.add(health)
             self.all_group.add(health)

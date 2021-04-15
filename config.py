@@ -2,6 +2,7 @@ import pygame
 
 SCREEN_X = 1920
 SCREEN_Y = 1080
+SCREEN_START = 100
 
 world = {
     "gravity": 0.00,        # ~0.02 for "semi-realistic" gravity

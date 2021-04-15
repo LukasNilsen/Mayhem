@@ -1,80 +1,62 @@
-Thu Apr 15 02:18:57 2021    cProfiler\output.dat
+Thu Apr 15 16:02:49 2021    cProfiler\output.dat
 
-         1702257 function calls in 60.605 seconds
+         531311 function calls in 5.048 seconds
 
    Ordered by: internal time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-     9521   22.455    0.002   22.455    0.002 {method 'tick' of 'Clock' objects}
-     9829   18.762    0.002   18.863    0.002 {method 'blits' of 'pygame.Surface' objects}
-     9829    9.059    0.001    9.059    0.001 {built-in method pygame.display.update}
-    13655    3.469    0.000    3.469    0.000 {built-in method pygame.image.load}
-     9521    2.809    0.000    2.809    0.000 {method 'fill' of 'pygame.Surface' objects}
-    19103    0.661    0.000    0.661    0.000 {built-in method pygame.mask.from_surface}
-     9830    0.429    0.000    0.429    0.000 {built-in method pygame.event.get}
-    78940    0.354    0.000    0.354    0.000 {method 'render' of 'pygame.font.Font' objects}
-    48280    0.332    0.000    0.332    0.000 {built-in method pygame.transform.rotate}
-    19042    0.324    0.000    0.470    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:155(collision)
-        1    0.313    0.313   60.605   60.605 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:55(main)
-    78940    0.310    0.000    0.310    0.000 {method 'blit' of 'pygame.Surface' objects}
-    19076    0.160    0.000    1.125    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:226(update)
-     9521    0.123    0.000    1.444    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:521(update)
-     9829    0.121    0.000    0.769    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\gui.py:45(update)
-     9521    0.113    0.000    0.113    0.000 {built-in method pygame.key.get_pressed}
-   301937    0.101    0.000    0.101    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:546(<genexpr>)
-   376748    0.097    0.000    0.097    0.000 {method 'overlap' of 'pygame.mask.Mask' objects}
-    75933    0.070    0.000    0.158    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\thrustanimation.py:46(update)
-    76483    0.061    0.000    0.061    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:360(sprites)
-     9829    0.058    0.000   18.969    0.002 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:533(draw)
-     1947    0.048    0.000    3.580    0.002 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\thrustanimation.py:20(__init__)
-    19042    0.045    0.000    0.053    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:113(action)
-    19042    0.039    0.000    0.095    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\player.py:63(input)
-    57133    0.038    0.000    0.092    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:415(__iter__)
-    15601    0.037    0.000    0.037    0.000 {method 'convert_alpha' of 'pygame.Surface' objects}
-     9829    0.033    0.000    0.033    0.000 {method 'update' of 'dict' objects}
-    19075    0.029    0.000    0.029    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:142(edges)
-    21089    0.029    0.000    0.029    0.000 {method 'get_rect' of 'pygame.Surface' objects}
-    42118    0.019    0.000    0.019    0.000 {built-in method builtins.round}
-    67907    0.013    0.000    0.013    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:80(update)
-     9521    0.012    0.000    0.950    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:185(check_alive)
-    73727    0.011    0.000    0.011    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:106(update)
-    57133    0.011    0.000    0.011    0.000 {built-in method builtins.iter}
-     5359    0.008    0.000    0.008    0.000 {method 'rotate' of 'pygame.math.Vector2' objects}
-     1997    0.008    0.000    0.013    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:421(add)
-     9829    0.006    0.000    0.006    0.000 {built-in method builtins.hasattr}
-    37166    0.006    0.000    0.006    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:93(update)
-       34    0.005    0.000    0.005    0.000 {built-in method builtins.print}
-        1    0.005    0.005    0.934    0.934 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:165(wait)
-    11165    0.004    0.000    0.004    0.000 {method 'append' of 'list' objects}
-     2017    0.004    0.000    0.004    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:385(remove_internal)
-     1982    0.004    0.000    0.009    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:183(kill)
-     1997    0.002    0.000    0.002    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:396(has_internal)
-     9521    0.002    0.000    0.002    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:169(update)
-     1972    0.002    0.000    0.002    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:112(__init__)
-     1947    0.001    0.000    0.001    0.000 {method 'normalize' of 'pygame.math.Vector2' objects}
-     1997    0.001    0.000    0.001    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:373(add_internal)
-     1997    0.001    0.000    0.001    0.000 {built-in method builtins.isinstance}
-     1997    0.001    0.000    0.001    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:153(add_internal)
-     1982    0.001    0.000    0.001    0.000 {method 'clear' of 'dict' objects}
-       34    0.000    0.000    0.008    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:296(testCollision)
-       25    0.000    0.000    0.004    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:23(determineSpawn)
-      308    0.000    0.000    0.000    0.000 {method 'get_width' of 'pygame.Surface' objects}
-       60    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Local\Programs\Python\Python39\lib\random.py:290(randrange)
-        1    0.000    0.000    0.004    0.004 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:122(generate_items)
-       60    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Local\Programs\Python\Python39\lib\random.py:237(_randbelow_with_getrandbits)
-        1    0.000    0.000   60.605   60.605 {built-in method builtins.exec}
-       25    0.000    0.000    0.000    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:13(__init__)
-       60    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Local\Programs\Python\Python39\lib\random.py:334(randint)
-        1    0.000    0.000    0.005    0.005 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:144(reset_game)
-        2    0.000    0.000    0.000    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:270(reset_ship)
-       10    0.000    0.000    0.002    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:76(__init__)
-       10    0.000    0.000    0.002    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:102(__init__)
-       99    0.000    0.000    0.000    0.000 {method 'getrandbits' of '_random.Random' objects}
-        5    0.000    0.000    0.001    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:89(__init__)
+      801    1.885    0.002    1.909    0.002 {method 'blits' of 'pygame.Surface' objects}
+      801    1.488    0.002    1.488    0.002 {method 'tick' of 'Clock' objects}
+      801    0.735    0.001    0.735    0.001 {built-in method pygame.display.update}
+      801    0.229    0.000    0.229    0.000 {method 'fill' of 'pygame.Surface' objects}
+     1602    0.154    0.000    0.204    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:155(collision)
+      413    0.112    0.000    0.112    0.000 {built-in method pygame.image.load}
+      802    0.075    0.000    0.075    0.000 {built-in method pygame.event.get}
+     1602    0.053    0.000    0.053    0.000 {built-in method pygame.mask.from_surface}
+   232692    0.044    0.000    0.044    0.000 {method 'overlap' of 'pygame.mask.Mask' objects}
+     6408    0.029    0.000    0.029    0.000 {method 'render' of 'pygame.font.Font' objects}
+      801    0.028    0.000    0.138    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:521(update)
+        1    0.026    0.026    5.048    5.048 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:55(main)
+      801    0.024    0.000    0.024    0.000 {built-in method pygame.draw.rect}
+   120983    0.024    0.000    0.024    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:546(<genexpr>)
+     6408    0.023    0.000    0.023    0.000 {method 'blit' of 'pygame.Surface' objects}
+     2487    0.022    0.000    0.022    0.000 {built-in method pygame.transform.rotate}
+     1602    0.013    0.000    0.091    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:226(update)
+   115545    0.013    0.000    0.013    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\items.py:45(update)
+      801    0.012    0.000    0.012    0.000 {built-in method pygame.key.get_pressed}
+      801    0.011    0.000    0.088    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\gui.py:46(update)
+     6408    0.008    0.000    0.008    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:360(sprites)
+      801    0.008    0.000    0.008    0.000 {method 'update' of 'dict' objects}
+      801    0.006    0.000    1.924    0.002 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:533(draw)
+     1602    0.003    0.000    0.004    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:113(action)
+     1602    0.003    0.000    0.008    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\player.py:63(input)
+     4806    0.003    0.000    0.010    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:415(__iter__)
+     1602    0.002    0.000    0.002    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\ship.py:142(edges)
+     2301    0.002    0.000    0.005    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\thrustanimation.py:46(update)
+     1661    0.002    0.000    0.002    0.000 {method 'get_rect' of 'pygame.Surface' objects}
+      801    0.002    0.000    0.002    0.000 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\game.py:185(check_alive)
+     3322    0.002    0.000    0.002    0.000 {built-in method builtins.round}
+       59    0.001    0.000    0.116    0.002 C:\Users\kjcoo\documents\inf-1400\mayhem\mayhem\thrustanimation.py:20(__init__)
+      472    0.001    0.000    0.001    0.000 {method 'convert_alpha' of 'pygame.Surface' objects}
+     4806    0.001    0.000    0.001    0.000 {built-in method builtins.iter}
+      452    0.001    0.000    0.001    0.000 {method 'rotate' of 'pygame.math.Vector2' objects}
+      801    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+      633    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+       59    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:421(add)
+      801    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:169(update)
+       75    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:385(remove_internal)
+       67    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:183(kill)
+       59    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:396(has_internal)
+       59    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:112(__init__)
+       59    0.000    0.000    0.000    0.000 {method 'normalize' of 'pygame.math.Vector2' objects}
+        1    0.000    0.000    5.048    5.048 {built-in method builtins.exec}
+       59    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:373(add_internal)
+       59    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Roaming\Python\Python39\site-packages\pygame\sprite.py:153(add_internal)
+       59    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       67    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
         1    0.000    0.000    0.000    0.000 {method 'close' of '_io.TextIOWrapper' objects}
         1    0.000    0.000    0.000    0.000 C:\Users\kjcoo\AppData\Local\Programs\Python\Python39\lib\_sitebuiltins.py:19(__call__)
-       60    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
-        1    0.000    0.000   60.605   60.605 <string>:1(<module>)
+        1    0.000    0.000    5.048    5.048 <string>:1(<module>)
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 
