@@ -5,7 +5,7 @@ Author: Lukas Nilsen & Adrian L Moen
 import pygame
 import time
 
-from config import SCREEN_X, SCREEN_Y, SCREEN_START, bullet_config, flameConfig, itemList, itemPos
+from config import SCREEN_X, SCREEN_Y, SCREEN_START, bullet_config, flameConfig, itemList
 from fire import Fire
 from player import Player
 from thrustanimation import ThrustAnimation
@@ -125,17 +125,17 @@ class Game:
         Items are random, but do not collide with terrain, every time
         """
 
-        for i in range(150):
+        for i in range(9):
             fuel = Fuel(self.terrain, self.item_group)
             self.item_group.add(fuel)
             self.all_group.add(fuel)
         
-        for i in range(0):
+        for i in range(7):
             ammo = Ammo(self.terrain, self.item_group)
             self.item_group.add(ammo)
             self.all_group.add(ammo)
 
-        for i in range(0):
+        for i in range(4):
             health = Health(self.terrain, self.item_group)
             self.item_group.add(health)
             self.all_group.add(health)
@@ -159,7 +159,7 @@ class Game:
         self.player2.reset_ship()
 
         # Spawn position -> Should be worked into the code when we get a map
-        self.player1.pos = pygame.Vector2([200, 300])
+        self.player1.pos = pygame.Vector2([200, 400])
         self.player2.pos = pygame.Vector2([SCREEN_X - 200, 300])
 
     def wait(self):
@@ -168,11 +168,11 @@ class Game:
         """
         while True:
 
-            press_y_to_continue = myfont.render("Press 'Y' to Continue", False, (0, 0, 0))
-            self.screen.blit(press_y_to_continue, (SCREEN_X / 2 - press_y_to_continue.get_width() // 2, SCREEN_Y / 2))
+            press_y_to_continue = myfont.render("Press 'Y' to Continue", False, (255, 255, 255))
 
             self.all_group.draw(self.screen)
             self.gui.update()
+            self.screen.blit(press_y_to_continue, (SCREEN_X / 2 - press_y_to_continue.get_width() // 2, SCREEN_Y / 2))
             pygame.display.update()
 
             for event in pygame.event.get():

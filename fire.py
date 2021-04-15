@@ -45,7 +45,7 @@ class Fire(pygame.sprite.Sprite):
 
         self.image = pygame.image.load(BULLET).convert_alpha()
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
-        self.image_mask = pygame.mask.from_surface(self.image)
+        self.mask = pygame.mask.from_surface(self.image)
 
         self.since_birth = 0    # Bullet has to travel a certain distance before it's "primed" and can kill
 

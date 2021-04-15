@@ -58,6 +58,8 @@ class Health(Item):
     def update(self):
         if self.activated:
             self.recipient.health += 40 
+            if self.recipient.health > 100:
+                self.recipient.health = 100
             self.kill()
 
 
