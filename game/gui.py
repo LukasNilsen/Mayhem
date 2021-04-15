@@ -48,6 +48,7 @@ class GUI():
 
         pygame.draw.rect(self.screen, (0, 0, 0), (0,0, SCREEN_X, SCREEN_START))
 
+        # Health bars
         pygame.draw.rect(self.screen, (255*self.player1.health/self.player1.max_health, 0, 0), (SCREEN_X / 8 - 10,68, self.player1.health*2, 20))
 
         pygame.draw.rect(self.screen, (255*self.player2.health/self.player2.max_health, 0, 0), (SCREEN_X - SCREEN_X / 5 - 10,68, self.player2.health*2, 20))

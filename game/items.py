@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from game.config import itemConfig, SCREEN_X, SCREEN_Y, SCREEN_START
+from game.config import item_config, SCREEN_X, SCREEN_Y, SCREEN_START
 
 FuelBarrel = r"resources\Fuel.png"
 AmmoBox = r"resources\AmmoBox.png"
@@ -12,8 +12,8 @@ class Item(pygame.sprite.Sprite):
     # Author Adrian L Moen
     def __init__(self, terrain, items, Image):
         super().__init__()
-        self.width = itemConfig["width"]
-        self.height = itemConfig["height"]
+        self.width = item_config["width"]
+        self.height = item_config["height"]
         self.activated = 0
         self.recepient = None
         self.terrain = terrain
@@ -21,7 +21,7 @@ class Item(pygame.sprite.Sprite):
         self.alreadyShot = 0
         self.image = pygame.image.load(Image).convert_alpha()
            
-    def determineSpawn(self):
+    def determine_spawn(self):
     
         self.rect = self.image.get_rect(topleft=(randint(0, SCREEN_X-self.width), randint(SCREEN_START, SCREEN_Y-self.height)))
         self.mask = pygame.mask.from_surface(self.image)
@@ -35,12 +35,11 @@ class Item(pygame.sprite.Sprite):
             item_terrain_overlap = self.mask.overlap(self.terrain.mask, item_terrain_offset)
 
 
-
 class Fuel(Item):
     
     def __init__(self, terrain, items):
         super().__init__(terrain, items, FuelBarrel)
-        super().determineSpawn()
+        super().determine_spawn()
 
     def update(self):
         if self.activated:
@@ -48,12 +47,11 @@ class Fuel(Item):
             self.kill()
 
 
-
 class Health(Item):
 
     def __init__(self, terrain, items):
         super().__init__(terrain, items, HealthBox)
-        super().determineSpawn()
+        super().determine_spawn()
 
     def update(self):
         if self.activated:
@@ -63,12 +61,11 @@ class Health(Item):
             self.kill()
 
 
-
 class Ammo(Item):
 
     def __init__(self, terrain, items):
         super().__init__(terrain, items, AmmoBox)
-        super().determineSpawn()
+        super().determine_spawn()
     
     def update(self):
         if self.activated:

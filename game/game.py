@@ -5,7 +5,7 @@ Author: Lukas Nilsen & Adrian L Moen
 import pygame
 import time
 
-from game.config import SCREEN_X, SCREEN_Y, SCREEN_START, bullet_config, flameConfig, itemList
+from game.config import SCREEN_X, SCREEN_Y, SCREEN_START, bullet_config, flame_config, item_list
 from game.fire import Fire
 from game.player import Player
 from game.thrustanimation import ThrustAnimation
@@ -73,9 +73,9 @@ class Game:
                 if thrust:
                     self.all_group.add(thrust)
 
+                i.collision(self.bullet_group, self.terrain, self.item_group)
 
-            for player in self.player_group:
-                player.collision(self.bullet_group, self.terrain, self.item_group)
+
 
             self.all_group.update()
             self.all_group.draw(self.screen)
@@ -90,7 +90,6 @@ class Game:
         This method generates a given amount of certain items called once when the game initializes, and every time a player dies
         Items are random, but do not collide with terrain, every time
         """
-
         for i in range(9):
             fuel = Fuel(self.terrain, self.item_group)
             self.item_group.add(fuel)
@@ -112,7 +111,6 @@ class Game:
         Method that resets the game. Called when one of the players die.
         Does not change scores
         """
-
         for i in self.bullet_group:
             i.kill()
 

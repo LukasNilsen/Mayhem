@@ -42,23 +42,23 @@ keyboard = {
     "m": pygame.K_m
 }
 
-flameConfig = {
+flame_config = {
     "delay": 2,
     "animationTime": 700
 }
 
-brickConfig = {
+brick_config = {
     "Blue": (0, 0, 255),
     "Red": (255, 0, 0),
     "Green": (0, 255, 0)
 }
 
-itemConfig = {
+item_config = {
     "width": 32,
     "height": 32
 }
 
-itemList = {
+item_list = {
     "fuel": 1,
     "bomb": 2,
     "ammo": 3
