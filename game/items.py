@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from config import itemConfig, SCREEN_X, SCREEN_Y, SCREEN_START
+from game.config import itemConfig, SCREEN_X, SCREEN_Y, SCREEN_START
 
 FuelBarrel = r"resources\Fuel.png"
 AmmoBox = r"resources\AmmoBox.png"

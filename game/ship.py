@@ -3,7 +3,7 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y, SCREEN_START
+from game.config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y, SCREEN_START
 
 class Ship(pygame.sprite.Sprite):
     """
@@ -298,7 +298,7 @@ class Ship(pygame.sprite.Sprite):
             1 if collision is on left or right
             2 if the collision is on the top or bottom
         """
-        currentOverlap = self.image_mask.overlap(terrain.image_mask, offset)
+        currentOverlap = self.mask.overlap(terrain.mask, offset)
         if currentOverlap:
             
             oldPos = self.pos
