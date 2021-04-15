@@ -89,9 +89,10 @@ class Ship(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(round(self.pos.x), round(self.pos.y)))
         self.image_mask = pygame.mask.from_surface(self.image)
 
-        # So the player can't shoot every iteration of main while loop
+        # So the player can't shoot every iteration of main while loop, delays flame and collision
         self.reload = 0
         self.flameReload = 0
+        self.collisionReload = 0
 
         # Ship starts out with max fuel, bullet and health
         self.fuel = self.max_fuel
@@ -106,6 +107,7 @@ class Ship(pygame.sprite.Sprite):
         self.newOverlap = None
         self.previousVelocity = self.velocity
         self.posCheck = True
+
 
 
     def action(self, keys):
@@ -129,11 +131,13 @@ class Ship(pygame.sprite.Sprite):
         if "thrust" in keys and self.fuel > 0:
             self.acceleration = self.direction * 0.05
             self.engine_on = True
-            self.fuel -= 0
+            self.fuel -= 1
 
         else:
             self.acceleration = [0, 0]
             self.engine_on = False
+
+
 
     def edges(self):
         """ If ship goes out of bounds, it appears on opposite side of screen"""
@@ -145,6 +149,8 @@ class Ship(pygame.sprite.Sprite):
             self.pos.y = 0
         if self.pos.y < 0:
             self.pos.y = SCREEN_Y
+
+
 
     def collision(self, bullets, terrain, items):
         """
@@ -179,15 +185,13 @@ class Ship(pygame.sprite.Sprite):
 
                 # What happens when bullet hits ship
                 if collision:
-                    self.health -= 1
+                    self.health -= bullet_config["Damage"]
                     i.kill()
 
 
         # Checks if ship collides with terrain
         ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
-        ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)
-
-        # currentOverlap = self.image_mask.overlap_area(terrain.image_mask, ship_terrain_offset)
+        ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)   
 
         # What happens when bullet hits ship
         # Im assuming you mean "What happens when ship hits terrain" with this one
@@ -199,12 +203,15 @@ class Ship(pygame.sprite.Sprite):
             elif self.testCollision(terrain, ship_terrain_offset) == 2:
                 self.velocity.y *= -1
 
-            self.health -= 1
+            if self.collisionReload == 0:
+                self.health -= 20
+                self.collisionReload = 100
 
 
         # Checks if ship has health left
         if self.health <= 0:
             self.alive = False
+            self.health = 0
 
 
         # Checks if ship "collides" with items
@@ -214,7 +221,6 @@ class Ship(pygame.sprite.Sprite):
             if item_collision:
                 i.recipient = self
                 i.activated = 1
-
 
 
     def update(self):
@@ -229,16 +235,18 @@ class Ship(pygame.sprite.Sprite):
             self.velocity += forces
             self.velocity *= (1 - world["drag"])
 
-            # Updating position of the ship
+            # Updating position of the ship, the posCheck statement is used to properly handle collision detection
             if self.posCheck:
                 self.pos += self.velocity
             
 
-            # "Reloads" the gun and thrustanimation
+            # "Reloads" the gun, thrustanimation, and the collisionReload 
             if self.reload > 0:
                 self.reload -= 1
             if self.flameReload > 0:
                 self.flameReload -= 1
+            if self.collisionReload > 0:
+                self.collisionReload -= 1
 
             # Different engine states
             if self.engine_on:
@@ -287,9 +295,7 @@ class Ship(pygame.sprite.Sprite):
     # returns 1 if the decision is correct, see the collision handling 
     def testCollision(self, terrain, offset):
 
-        """
-        Tester for sidekollisjon, hvis ikke er det en top/bunn kollisjon
-        """
+        """Tester for sidekollisjon, hvis ikke er det en top/bunn kollisjon"""
 
         currentOverlap = self.image_mask.overlap(terrain.image_mask, offset)
         if currentOverlap:

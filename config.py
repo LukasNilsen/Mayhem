@@ -12,7 +12,7 @@ ship_config = {
     "max_fuel": 1000,
     "engine_strength": 1.02,
     "max_bullets": 40,
-    "max_health": 3,
+    "max_health": 100,
 
     "SHIP1_OFF": r"resources\Player1.png",
     "SHIP2_OFF": r"resources\Player2.png",
@@ -25,7 +25,8 @@ ship_config = {
 bullet_config = {
     "speed": 5,
     "reload_time": 20,
-    "priming_time": 20
+    "priming_time": 20,
+    "Damage": 35
 }
 
 keyboard = {
@@ -80,9 +81,9 @@ itemPos = {
     "fuel15": [1570, 800, 1, 32, 32],
     "fuel16": [1500, 890, 1, 32, 32],
 
-    
 
-    "ammo1": [50, 300, 3, 32, 32],
-    "ammo2": [400, 700, 3, 32, 32],
+
+    "ammo1": [50, 50, 3, 32, 32],
+    "ammo2": [400, 800, 3, 32, 32],
     "ammo3": [1200, 700, 3, 32, 32]
 }

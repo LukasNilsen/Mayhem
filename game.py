@@ -11,7 +11,7 @@ from player import Player
 from thrustanimation import ThrustAnimation
 from terrain import Terrain
 from gui import GUI
-from items import Item
+from items import *
 
 pygame.init()
 pygame.display.set_caption("Mayhem")
@@ -121,17 +121,24 @@ class Game:
 
     def generate_items(self):
         """
-
+        This method generates a given amount of certain items called once when the game initializes, and every time a player dies
+        Items are random, but do not collide with terrain, every time
         """
-        for i in itemPos:
-            if itemPos[i][2] == 1:
-                fuel = Item(itemPos[i][0], itemPos[i][1], itemPos[i][2])
-                self.item_group.add(fuel)
-                self.all_group.add(fuel)
 
-            if itemPos[i][2] == 2:
-                bomb = Item(itemPos[i][0], itemPos[i][1], itemPos[2])
-                self.item_group.add(bomb)
+        for i in range(10):
+            fuel = Fuel(self.terrain, self.item_group)
+            self.item_group.add(fuel)
+            self.all_group.add(fuel)
+        
+        for i in range(10):
+            ammo = Ammo(self.terrain, self.item_group)
+            self.item_group.add(ammo)
+            self.all_group.add(ammo)
+
+        for i in range(5):
+            health = Health(self.terrain, self.item_group)
+            self.item_group.add(health)
+            self.all_group.add(health)
 
 
     def reset_game(self):
@@ -142,6 +149,11 @@ class Game:
 
         for i in self.bullet_group:
             i.kill()
+
+        for i in self.item_group:
+            i.kill()
+
+        self.generate_items()
 
         self.player1.reset_ship()
         self.player2.reset_ship()

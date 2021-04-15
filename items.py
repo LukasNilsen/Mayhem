@@ -1,64 +1,109 @@
 import pygame
-from config import itemConfig
+from random import randint
+from config import itemConfig, SCREEN_X, SCREEN_Y
 
-Fuel = r"resources\Fuel.png"
+FuelBarrel = r"resources\Fuel.png"
 AmmoBox = r"resources\AmmoBox.png"
+BULLET = r"resources\bullet.png"
 
 # Author Adrian L Moen
 class Item(pygame.sprite.Sprite):
     
     # Author Adrian L Moen
-    def __init__(self, x, y, item):
+    def __init__(self, terrain, items):
         super().__init__()
-        self.x = x
-        self.y = y
         self.width = itemConfig["width"]
         self.height = itemConfig["height"]
         self.activated = 0
         self.recepient = None
-        self.type = item
-        self.itemTypeCheck()
-
+        self.terrain = terrain
+        self.items = items
         self.alreadyShot = 0
+           
+    def determineSpawn(self, itemType):
 
-    # Author Adrian L Moen
-    def itemTypeCheck(self):
-        if self.type == 1:
-            self.image = pygame.image.load(Fuel).convert_alpha()
-            self.rect = self.image.get_rect(topleft=(self.x, self.y))
-            self.image_mask = pygame.mask.from_surface(self.image)
-
-        if self.type == 2:
-            pass
-
-        if self.type == 3:
+        if itemType == 1:
+            self.image = pygame.image.load(FuelBarrel).convert_alpha()
+        if itemType == 2:
+            self.image = pygame.image.load(BULLET).convert_alpha()
+        if itemType == 3:
             self.image = pygame.image.load(AmmoBox).convert_alpha()
-            self.rect = self.image.get_rect(topleft=(self.x, self.y))
-            self.image_mask = pygame.mask.from_surface(self.image)
 
-    # Author Adrian L Moen
-    def fuel(self):
-        self.recipient.fuel = self.recipient.max_fuel
+        self.rect = self.image.get_rect(topleft=(randint(0, SCREEN_X-self.width), randint(0, SCREEN_Y-self.height)))
+        self.image_mask = pygame.mask.from_surface(self.image)
 
-    # Author Adrian L Moen
-    def bomb(self):
-        pass
+        item_terrain_offset = (int(self.terrain.rect.left - self.rect.left), int(self.terrain.rect.top - self.rect.top))
+        item_terrain_overlap = self.image_mask.overlap(self.terrain.image_mask, item_terrain_offset)
 
-    # Author Adrian L Moen
-    def ammo(self):
-        self.recipient.bullets += 20 
+        while item_terrain_overlap:
+
+            self.rect = self.image.get_rect(topleft=(randint(0, SCREEN_X-self.width), randint(0, SCREEN_Y-self.height)))
+
+            item_terrain_offset = (int(self.terrain.rect.left - self.rect.left), int(self.terrain.rect.top - self.rect.top))
+            item_terrain_overlap = self.image_mask.overlap(self.terrain.image_mask, item_terrain_offset)
+
+            if item_terrain_overlap:
+                continue
+
+            for i in self.items:
+
+                item_item_offset = (int(i.rect.left-self.rect.left), int(i.rect.top-self.rect.top))
+                item_item_overlap = self.image_mask.overlap(i.image_mask, item_item_offset)
+                
+                if item_item_overlap:
+                    print("")
+                    print(int(i.rect.left-self.rect.left), int(i.rect.top-self.rect.top))
+                    self.rect = self.image.get_rect(topleft=(randint(0, SCREEN_X-self.width), randint(0, SCREEN_Y-self.height)))
+                    continue
+            
+                item_terrain_offset = (int(self.terrain.rect.left - self.rect.left), int(self.terrain.rect.top - self.rect.top))
+                item_terrain_overlap = self.image_mask.overlap(self.terrain.image_mask, item_terrain_offset)
+                
+                if item_terrain_overlap:
+                    self.rect = self.image.get_rect(topleft=(randint(0, SCREEN_X-self.width), randint(0, SCREEN_Y-self.height)))
+                    continue
+                else:
+                    # print("spawned item at", self.rect.x, self.rect.y, "after correction")
+                    break
+
+            # print("spawned item at", self.rect.x, self.rect.y)
+                    
+
+
+
+class Fuel(Item):
     
-    # Author Adrian L Moen
+    def __init__(self, terrain, items):
+        super().__init__(terrain, items)
+        super().determineSpawn(1)
+
     def update(self):
-
-        self.rect = self.image.get_rect(topleft=(self.x, self.y))
-
         if self.activated:
-            if self.type == 1:
-                self.fuel()
-            if self.type == 2:
-                self.bomb()
-            if self.type == 3:
-                self.ammo()
+            self.recipient.fuel = self.recipient.max_fuel
+            self.kill()
 
+
+
+class Health(Item):
+
+    def __init__(self, terrain, items):
+        super().__init__(terrain, items)
+        super().determineSpawn(2)
+
+    def update(self):
+        if self.activated:
+            self.recipient.health += 40 
+            self.kill()
+
+
+
+class Ammo(Item):
+
+    def __init__(self, terrain, items):
+        super().__init__(terrain, items)
+        super().determineSpawn(3)
+    
+    def update(self):
+        if self.activated:
+            self.recipient.bullets += 20 
             self.kill()

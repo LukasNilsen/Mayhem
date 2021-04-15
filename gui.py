@@ -59,6 +59,12 @@ class GUI():
         self.screen.blit(player1_bullets, (SCREEN_X / 4, 60))
         self.screen.blit(player2_bullets, (3 * SCREEN_X / 4, 60))
 
+        player1_health = myfont.render(f"HP: {self.player1.health}", False, (0,0,0))
+        player2_health = myfont.render(f"HP: {self.player2.health}", False, (0,0,0))
+        self.screen.blit(player1_health, (SCREEN_X / 4, 80))
+        self.screen.blit(player2_health, (3*SCREEN_X / 4, 80))
+        # pygame.draw.rect(self.screen, (255,0,0), pygame.Rect())
+
 
 
 
