@@ -3,7 +3,9 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from game.config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y, SCREEN_START
+from game.config import ship_config, flameConfig, bullet_config, world, SCREEN_X, SCREEN_Y, SCREEN_START
+from game.fire import Fire
+from game.thrustanimation import ThrustAnimation
 
 class Ship(pygame.sprite.Sprite):
     """
@@ -118,7 +120,14 @@ class Ship(pygame.sprite.Sprite):
         ---------
         keys : list
             list of pygame.K_x ( x : key )
+
+        return:
+            thrust : thrustanimation object
+            bullet : fire object
         """
+
+        thrust = None
+        bullet = None
 
         if "left" in keys:
             self.direction = self.direction.rotate(-1)
@@ -133,10 +142,20 @@ class Ship(pygame.sprite.Sprite):
             self.engine_on = True
             self.fuel -= 1
 
+            if self.flameReload <= 0:
+                thrust = ThrustAnimation(self.pos, self.direction, self)
+                self.flameReload = flameConfig["delay"]
         else:
             self.acceleration = [0, 0]
             self.engine_on = False
 
+        if "fire" in keys and self.bullets > 0 and self.reload == 0:
+            bullet = Fire(self)
+            self.bullets -= 1
+            self.reload = bullet_config["reload_time"]
+
+
+        return thrust, bullet
 
 
     def edges(self):

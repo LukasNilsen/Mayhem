@@ -68,6 +68,10 @@ class Player(Ship):
         -----------
         keys : pygame.key.get_pressed()
             keys pressed
+
+        return
+            thrust : thrustanimation object
+            bullet : bullet object
         """
         strokes = []
         if keys[self.left_key]:
@@ -79,7 +83,9 @@ class Player(Ship):
         if keys[self.fire_key]:
             strokes.append("fire")
 
-        self.action(strokes)
+        thrust, bullet = self.action(strokes)
+        return thrust, bullet
+
 
 
 

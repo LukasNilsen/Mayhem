@@ -20,14 +20,7 @@ myfont = pygame.font.SysFont("calibri", 60)
 
 
 class Game:
-    """
-
-    """
-
     def __init__(self):
-        """
-
-        """
         self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
 
         self.player_group = pygame.sprite.Group()
@@ -53,9 +46,6 @@ class Game:
         self.player2.pos = pygame.Vector2([SCREEN_X - 200, 300])
 
     def main(self):
-        """
-
-        """
         while True:
 
             for event in pygame.event.get():
@@ -69,8 +59,6 @@ class Game:
 
             time_passed = self.clock.tick(self.hz) / 1000.0
 
-            # print(1 / time_passed)
-
             # Log key inputs
             keys = pygame.key.get_pressed()
 
@@ -78,32 +66,13 @@ class Game:
                 exit()
 
             for i in self.player_group:
-                i.input(keys)
+                thrust, bullet = i.input(keys)
+                if bullet:
+                    self.bullet_group.add(bullet)
+                    self.all_group.add(bullet)
+                if thrust:
+                    self.all_group.add(thrust)
 
-            # Checks if "fire_key" is pressed, if the player has a shot ready, and if the player has bullets left
-            if keys[self.player1.fire_key] and self.player1.reload == 0 and self.player1.bullets > 0:
-                f = Fire(self.player1)
-                self.bullet_group.add(f)
-                self.all_group.add(f)
-                self.player1.bullets -= 1
-                self.player1.reload = bullet_config["reload_time"]
-
-            if keys[self.player2.fire_key] and self.player2.reload == 0 and self.player2.bullets > 0:
-                f = Fire(self.player2)
-                self.bullet_group.add(f)
-                self.all_group.add(f)
-                self.player2.bullets -= 1
-                self.player2.reload = bullet_config["reload_time"]
-
-            if keys[self.player1.thrust_key] and self.player1.flameReload == 0 and self.player1.alive:
-                flame = ThrustAnimation(self.player1.pos, self.player1.direction, self.player1)
-                self.all_group.add(flame)
-                self.player1.flameReload = flameConfig["delay"]
-
-            if keys[self.player2.thrust_key] and self.player2.flameReload == 0 and self.player2.alive:
-                flame = ThrustAnimation(self.player2.pos, self.player2.direction, self.player2)
-                self.all_group.add(flame)
-                self.player2.flameReload = flameConfig["delay"]
 
             for player in self.player_group:
                 player.collision(self.bullet_group, self.terrain, self.item_group)
@@ -114,9 +83,6 @@ class Game:
             pygame.display.update()
 
     def generate_terrain(self):
-        """
-
-        """
         self.terrain = Terrain()
 
     def generate_items(self):
@@ -164,7 +130,7 @@ class Game:
 
     def wait(self):
         """
-
+        Waiting method. Stops the game until Y is pressed. Called when one player dies.
         """
         while True:
 
@@ -184,7 +150,9 @@ class Game:
 
     def check_alive(self):
         """
+        Checks if any of the players are dead.
 
+        If a player is dead, the other player is rewarded with a point and the game.wait and game.reset_game are called
         """
         if self.player1.health <= 0:
             self.player2.score += 1
