@@ -3,7 +3,7 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from config import SCREEN_X
+from game.config import SCREEN_X
 
 pygame.font.init()
 myfont = pygame.font.SysFont("calibri", 20)

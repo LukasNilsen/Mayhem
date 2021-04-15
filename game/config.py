@@ -4,7 +4,7 @@ SCREEN_X = 1920
 SCREEN_Y = 1080
 
 world = {
-    "gravity": 0.00,        # ~0.02 for "semi-realistic" gravity
+    "gravity": 0.02,        # ~0.02 for "semi-realistic" gravity
     "drag": 0.01
 }
 

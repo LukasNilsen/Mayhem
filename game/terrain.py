@@ -3,7 +3,6 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from config import brickConfig, SCREEN_X, SCREEN_Y
 
 EXAMPLE_MAP = r"resources\example_map.png"
 

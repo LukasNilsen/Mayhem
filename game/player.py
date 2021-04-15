@@ -3,8 +3,8 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from ship import Ship
-from config import keyboard
+from game.ship import Ship
+from game.config import keyboard
 
 
 class Player(Ship):

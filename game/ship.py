@@ -3,7 +3,7 @@ Author: Lukas Nilsen & Adrian L Moen
 """
 
 import pygame
-from config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y
+from game.config import ship_config, bullet_config, world, SCREEN_X, SCREEN_Y
 
 class Ship(pygame.sprite.Sprite):
     """
@@ -151,7 +151,6 @@ class Ship(pygame.sprite.Sprite):
             self.pos.y = SCREEN_Y
 
 
-
     def collision(self, bullets, terrain, items):
         """
         Checks if ship crashes with bullets, terrain or items.
@@ -193,11 +192,10 @@ class Ship(pygame.sprite.Sprite):
         ship_terrain_offset = (int(terrain.rect.left - self.rect.left), int(terrain.rect.top - self.rect.top))
         ship_terrain_collision = self.image_mask.overlap(terrain.image_mask, ship_terrain_offset)   
 
-        # What happens when bullet hits ship
-        # Im assuming you mean "What happens when ship hits terrain" with this one
+        # If there is collision ship-terrain
         if ship_terrain_collision and self.since_birth > 20:
             
-            #Simpel kollisjonstest, dersom testCollision returnerer 1, er det en høyre eller venstre kollisjon, og velocity.x endres, men funksjonen fungerer ikke enn så lenge, se nederst på siden
+            # Calls testCollision to see if collision is on left/right or top/bottom
             if self.testCollision(terrain, ship_terrain_offset) == 1:
                 self.velocity.x *= -1
             elif self.testCollision(terrain, ship_terrain_offset) == 2:
@@ -291,12 +289,15 @@ class Ship(pygame.sprite.Sprite):
         self.since_birth = 0
 
 
-
     # returns 1 if the decision is correct, see the collision handling 
     def testCollision(self, terrain, offset):
+        """
+        Checks if the collision is on the y or x plane of the ship.
 
-        """Tester for sidekollisjon, hvis ikke er det en top/bunn kollisjon"""
-
+        Returns
+            1 if collision is on left or right
+            2 if the collision is on the top or bottom
+        """
         currentOverlap = self.image_mask.overlap(terrain.image_mask, offset)
         if currentOverlap:
             oldPos = self.pos
